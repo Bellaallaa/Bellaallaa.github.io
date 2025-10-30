@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Git 常用命令 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Git 是最常用的分布式版本控制系统之一，命令非常多，但其实常用的就几十个左右。下面是一份「最常用 Git 命令速查表」，并按用途分类  🧱 一、初始化与配置   命令 说明    git init 在当前目录初始化一个新的 Git 仓库   git clone &lt;url&gt; 克隆远程仓库到本地   git config --global user.name &quot;YourNam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 常用命令">
+<meta property="og:url" content="http://example.com/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Git 是最常用的分布式版本控制系统之一，命令非常多，但其实常用的就几十个左右。下面是一份「最常用 Git 命令速查表」，并按用途分类  🧱 一、初始化与配置   命令 说明    git init 在当前目录初始化一个新的 Git 仓库   git clone &lt;url&gt; 克隆远程仓库到本地   git config --global user.name &quot;YourNam">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-30T03:15:14.000Z">
+<meta property="article:modified_time" content="2025-10-30T03:17:29.669Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Git-常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2025-10-30T03:15:14.000Z" itemprop="datePublished">2025-10-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Git 常用命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Git 是最常用的分布式版本控制系统之一，命令非常多，但其实常用的就几十个左右。下面是一份「最常用 Git 命令速查表」，并按用途分类</p>
+<hr>
+<h2 id="🧱-一、初始化与配置"><a href="#🧱-一、初始化与配置" class="headerlink" title="🧱 一、初始化与配置"></a>🧱 一、初始化与配置</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git init</code></td>
+<td>在当前目录初始化一个新的 Git 仓库</td>
+</tr>
+<tr>
+<td><code>git clone &lt;url&gt;</code></td>
+<td>克隆远程仓库到本地</td>
+</tr>
+<tr>
+<td><code>git config --global user.name &quot;YourName&quot;</code></td>
+<td>设置全局用户名</td>
+</tr>
+<tr>
+<td><code>git config --global user.email &quot;you@example.com&quot;</code></td>
+<td>设置全局邮箱</td>
+</tr>
+<tr>
+<td><code>git config --list</code></td>
+<td>查看当前配置</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📁-二、查看仓库状态与历史"><a href="#📁-二、查看仓库状态与历史" class="headerlink" title="📁 二、查看仓库状态与历史"></a>📁 二、查看仓库状态与历史</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git status</code></td>
+<td>查看当前工作区状态（修改、暂存等）</td>
+</tr>
+<tr>
+<td><code>git log</code></td>
+<td>查看提交历史</td>
+</tr>
+<tr>
+<td><code>git log --oneline --graph --all</code></td>
+<td>以简洁图形方式查看提交历史</td>
+</tr>
+<tr>
+<td><code>git show &lt;commit&gt;</code></td>
+<td>显示某次提交的详细信息</td>
+</tr>
+<tr>
+<td><code>git diff</code></td>
+<td>查看工作区与暂存区的区别</td>
+</tr>
+<tr>
+<td><code>git diff --staged</code></td>
+<td>查看暂存区与上一次提交的区别</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💾-三、添加与提交修改"><a href="#💾-三、添加与提交修改" class="headerlink" title="💾 三、添加与提交修改"></a>💾 三、添加与提交修改</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git add &lt;file&gt;</code></td>
+<td>添加单个文件到暂存区</td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>添加所有修改到暂存区</td>
+</tr>
+<tr>
+<td><code>git commit -m &quot;message&quot;</code></td>
+<td>提交修改并添加提交说明</td>
+</tr>
+<tr>
+<td><code>git commit -am &quot;message&quot;</code></td>
+<td>跳过暂存区直接提交已追踪文件的修改</td>
+</tr>
+<tr>
+<td><code>git restore &lt;file&gt;</code></td>
+<td>撤销工作区修改</td>
+</tr>
+<tr>
+<td><code>git restore --staged &lt;file&gt;</code></td>
+<td>将暂存区文件移回工作区（取消暂存）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🌳-四、分支管理"><a href="#🌳-四、分支管理" class="headerlink" title="🌳 四、分支管理"></a>🌳 四、分支管理</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git branch</code></td>
+<td>查看本地分支</td>
+</tr>
+<tr>
+<td><code>git branch &lt;name&gt;</code></td>
+<td>新建分支</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;name&gt;</code></td>
+<td>切换到某分支</td>
+</tr>
+<tr>
+<td><code>git checkout -b &lt;name&gt;</code></td>
+<td>新建并切换到该分支</td>
+</tr>
+<tr>
+<td><code>git merge &lt;name&gt;</code></td>
+<td>将指定分支合并到当前分支</td>
+</tr>
+<tr>
+<td><code>git branch -d &lt;name&gt;</code></td>
+<td>删除本地分支</td>
+</tr>
+<tr>
+<td><code>git switch &lt;name&gt;</code></td>
+<td>切换分支（新版推荐）</td>
+</tr>
+<tr>
+<td><code>git switch -c &lt;name&gt;</code></td>
+<td>新建并切换分支（新版推荐）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🌐-五、远程仓库操作"><a href="#🌐-五、远程仓库操作" class="headerlink" title="🌐 五、远程仓库操作"></a>🌐 五、远程仓库操作</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git remote -v</code></td>
+<td>查看当前远程仓库</td>
+</tr>
+<tr>
+<td><code>git remote add origin &lt;url&gt;</code></td>
+<td>关联远程仓库</td>
+</tr>
+<tr>
+<td><code>git fetch</code></td>
+<td>获取远程更新但不合并</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>拉取远程更新并合并</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>推送本地更新到远程</td>
+</tr>
+<tr>
+<td><code>git push -u origin &lt;branch&gt;</code></td>
+<td>首次推送并设置默认远程分支</td>
+</tr>
+<tr>
+<td><code>git push origin --delete &lt;branch&gt;</code></td>
+<td>删除远程分支</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔙-六、回退与撤销操作"><a href="#🔙-六、回退与撤销操作" class="headerlink" title="🔙 六、回退与撤销操作"></a>🔙 六、回退与撤销操作</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git reset &lt;file&gt;</code></td>
+<td>取消暂存某文件</td>
+</tr>
+<tr>
+<td><code>git reset --hard &lt;commit&gt;</code></td>
+<td>回退到指定提交（会丢失修改）</td>
+</tr>
+<tr>
+<td><code>git reset --soft &lt;commit&gt;</code></td>
+<td>回退到指定提交但保留修改</td>
+</tr>
+<tr>
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>生成一个新的提交来撤销某次提交</td>
+</tr>
+<tr>
+<td><code>git reflog</code></td>
+<td>查看所有操作日志（可找回丢失的提交）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧩-七、标签（Tag）"><a href="#🧩-七、标签（Tag）" class="headerlink" title="🧩 七、标签（Tag）"></a>🧩 七、标签（Tag）</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git tag</code></td>
+<td>查看标签</td>
+</tr>
+<tr>
+<td><code>git tag &lt;name&gt;</code></td>
+<td>创建轻量标签</td>
+</tr>
+<tr>
+<td><code>git tag -a &lt;name&gt; -m &quot;message&quot;</code></td>
+<td>创建带注释标签</td>
+</tr>
+<tr>
+<td><code>git push origin &lt;tag&gt;</code></td>
+<td>推送某个标签到远程</td>
+</tr>
+<tr>
+<td><code>git push origin --tags</code></td>
+<td>推送所有标签到远程</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧰-八、其他实用命令"><a href="#🧰-八、其他实用命令" class="headerlink" title="🧰 八、其他实用命令"></a>🧰 八、其他实用命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git stash</code></td>
+<td>临时保存当前修改</td>
+</tr>
+<tr>
+<td><code>git stash pop</code></td>
+<td>恢复最近一次保存的修改</td>
+</tr>
+<tr>
+<td><code>git cherry-pick &lt;commit&gt;</code></td>
+<td>将某次提交应用到当前分支</td>
+</tr>
+<tr>
+<td><code>git blame &lt;file&gt;</code></td>
+<td>查看文件每一行的修改者和提交号</td>
+</tr>
+<tr>
+<td><code>git clean -fd</code></td>
+<td>清除未跟踪的文件和文件夹</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💡-常用工作流举例"><a href="#💡-常用工作流举例" class="headerlink" title="💡 常用工作流举例"></a>💡 常用工作流举例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化仓库</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加远程仓库</span></span><br><span class="line">git remote add origin https://github.com/user/repo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建分支并切换</span></span><br><span class="line">git checkout -b dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改代码后提交</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;fix bug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送到远程</span></span><br><span class="line">git push -u origin dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支</span></span><br><span class="line">git checkout main</span><br><span class="line">git merge dev</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="%22https://chatgpt.com/%22">ChatGPT</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cmhcutbkq0000lwuk29qn3gxb" data-title="Git 常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">科研利器:tmux的使用方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">科研利器:tmux的使用方法</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">制作你的第一篇个人博客!</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/29/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
