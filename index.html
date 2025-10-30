@@ -357,12 +357,12 @@
 <hr>
 <h2 id="💡-常用工作流举例"><a href="#💡-常用工作流举例" class="headerlink" title="💡 常用工作流举例"></a>💡 常用工作流举例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化仓库</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加远程仓库</span></span><br><span class="line">git remote add origin https://github.com/user/repo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建分支并切换</span></span><br><span class="line">git checkout -b dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改代码后提交</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;fix bug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送到远程</span></span><br><span class="line">git push -u origin dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支</span></span><br><span class="line">git checkout main</span><br><span class="line">git merge dev</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="%22https://chatgpt.com/%22">ChatGPT</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cmhcutbkq0000lwuk29qn3gxb" data-title="Git 常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cmhdedlv20002pcuk92zm9rm5" data-title="Git 常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -516,12 +516,12 @@
 
 <p>✅ 就能继续看到拼接进度或调试信息。</p>
 <hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="%22https://chatgpt.com/%22">ChatGPT</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cmhcutbkv0003lwuk9ww240xz" data-title="科研利器:tmux的使用方法" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cmhdedlv30003pcukgrog982c" data-title="科研利器:tmux的使用方法" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -600,23 +600,79 @@
 </li>
 </ol>
 <p>   如果显示404, 我们点击它的<a href="%22https://docs.github.com/en/pages%22">full document</a>链接去阅读并按照要求操作即可<br>    (其实有时只需要等待一段时间即可)</p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">hexo init # 初始化一个新的博客</span><br><span class="line"></span><br><span class="line">hexo new &quot;My New Post&quot;  # 新建一篇文章</span><br><span class="line">hexo n # 同上</span><br><span class="line"></span><br><span class="line">hexo clean # 清理缓存文件与已生成的静态文件(常用语hexo g 前)</span><br><span class="line"></span><br><span class="line">hexo generate # 生成静态网页(在public/文件夹中)</span><br><span class="line">hexo g # 同上</span><br><span class="line"></span><br><span class="line">hexo server # 启动本地服务器, 默认端口4000, 可预览博客</span><br><span class="line">hexo s # 同上</span><br><span class="line"></span><br><span class="line">hexo deploy # 部署网站到远程</span><br><span class="line">hexo d # 同上</span><br><span class="line"></span><br><span class="line">hexo list [type] # 列出某类内容(如posts, pages, tags 等)</span><br><span class="line"></span><br><span class="line">hexo version # 查看hexo的版本号</span><br><span class="line"></span><br><span class="line">hexo help # 产看命令帮助文档</span><br></pre></td></tr></table></figure>
-
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hexo init</code></td>
+<td>初始化一个新的博客</td>
+</tr>
+<tr>
+<td><code>hexo new &quot;My New Post&quot;</code></td>
+<td>新建一篇博客</td>
+</tr>
+<tr>
+<td><code>hexo n</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>hexo clean</code></td>
+<td>清理缓存文件与已生成的静态文件(常用语hexo g 前)</td>
+</tr>
+<tr>
+<td><code>hexo generate</code></td>
+<td>生成静态网页(在public&#x2F;文件夹中)</td>
+</tr>
+<tr>
+<td><code>hexo g</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>hexo server</code></td>
+<td>启动本地服务器, 默认端口4000, 可预览博客</td>
+</tr>
+<tr>
+<td><code>hexo s</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>hexo deploy</code></td>
+<td>部署网站到远程</td>
+</tr>
+<tr>
+<td><code>hexo d</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>hexo list [type]</code></td>
+<td>列出某类内容(如posts, pages, tags 等)</td>
+</tr>
+<tr>
+<td><code>hexo version</code></td>
+<td>查看hexo的版本号</td>
+</tr>
+<tr>
+<td><code>hexo help</code></td>
+<td>产看命令帮助文档</td>
+</tr>
+</tbody></table>
 <h3 id="一些注意…"><a href="#一些注意…" class="headerlink" title="一些注意…"></a>一些注意…</h3><ol>
 <li>在部署时, 有时会因为网络问题出现报错, 可以过段时间再次尝试<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/你的用户名/你的用户名.github.io.git/&#x27;: Failed to connect to github.com port 443 after 21091 ms: Could not connect to server</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure></li>
-<li>使用<code>hexo d</code>命令部署后需要等待一段时间才能在网页看到更新后的显示</li>
+<li>使用<code>hexo d</code>命令部署后需要等待一段时间才能在网页看到更新后的显示, 可以使用<code>ping github.com</code>进行测试</li>
 <li>图片显示问题</li>
-<li>链接传送问题</li>
-<li></li>
 </ol>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><a href="%22https://www.bilibili.com/video/BV1Yb411a7ty%22">B站视频</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty">B站视频</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="cmhcutbku0002lwuk81v222lu" data-title="制作你的第一篇个人博客!" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="cmhdedlv10001pcukb7y1067k" data-title="制作你的第一篇个人博客!" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -667,7 +723,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/29/hello-world/" data-id="cmhcutbks0001lwuk2rc708li" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/10/29/hello-world/" data-id="cmhdedluz0000pcuk8cfnhxvz" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
