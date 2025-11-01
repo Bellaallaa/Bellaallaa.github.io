@@ -1,832 +1,169 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Hexo",
+  "alternateName": [
+    "example.com"
+  ],
+  "url": "http://example.com/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
   
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git 常用命令">Git 常用命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-10-30T03:15:14.000Z" title="Created 2025-10-30 11:15:14">2025-10-30</time></span></div><div class="content">Git 是最常用的分布式版本控制系统之一，命令非常多，但其实常用的就几十个左右。下面是一份「最常用 Git 命令速查表」，并按用途分类  🧱 一、初始化与配置   命令 说明    git init 在当前目录初始化一个新的 Git 仓库   git clone &lt;url&gt; 克隆远程仓库到本地   git config --global user.name &quot;YourName&quot; 设置全局用户名   git config --global user.email &quot;you@example.com&quot; 设置全局邮箱   git config --list 查看当前配置    📁 二、查看仓库状态与历史   命令 说明    git status 查看当前工作区状态（修改、暂存等）   git log 查看提交历史   git log --oneline --graph --all 以简洁图形方式查看提交历史   git show &lt;commit&gt; 显示某次提交的详细信息   git diff 查看工作区与暂存区的区别  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="科研利器:tmux的使用方法">科研利器:tmux的使用方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-10-29T14:53:10.000Z" title="Created 2025-10-29 22:53:10">2025-10-29</time></span></div><div class="content">前言在 VSCode 中配置 tmux，这是进阶开发者常用的后台运行方式。配置好之后，你就可以在 VSCode 的终端中像在服务器上一样：👉 后台运行 Python、随时分离、重新连接、查看输出，不卡终端！  🧩 一、什么是 tmux？tmux（Terminal Multiplexer） 是一个终端复用器，可以：  在一个终端里开多个“窗口”； 让程序在后台持续运行； 即使关闭 VSCode 或 SSH 连接，也能再回来继续。   ⚙️ 二、tmux 的安装🪟 Windows 用户（两种方式）：✅ 如果你使用的是 **WSL (Ubuntu on Windows)**：直接在 WSL 终端中运行： 12sudo apt updatesudo apt install tmux -y  ❌ 如果你只用 Windows 原生终端：原生 Windows 没有 tmux，建议：  在 VSCode 中使用 WSL 终端； 或者安装 Git Bash 并在其中使用 tmux（较复杂）。   🚀 推荐方式：在 VSCode 使用 WSL + Ubuntu 环境，这样完全等同于 Linu...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="制作你的第一篇个人博客!">制作你的第一篇个人博客!</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-10-29T13:45:37.000Z" title="Created 2025-10-29 21:45:37">2025-10-29</time></span></div><div class="content">前言本教程利用 hexo+Github 来制作和本博客一样的个人博客hexo网址: https://hexo.io/zh-cn/ 具体步骤 从 Nodejs的官网 下载并安装nodejs, 因为Hexo需要nodejs的支持 Node.js是一个基于 Chrome V8 引擎 的 JavaScript 运行时环境，它可以让你在服务器端运行 JavaScript，而不仅仅是在浏览器中。Node.js 是一个 事件驱动、非阻塞式 I&#x2F;O 模型，适合开发高性能、可扩展的网络应用程序，特别是处理并发请求时。 如何确认是否安装了nodejs?在终端输入node -v, npm -v会显示已安装的 版本  尝试直接安装hexo 1npm install -g hexo-cli 若成功, 转第5步; 若失败, 继续下面第3步  利用淘宝的镜像来加速下载, 在终端输入  1npm install -g cnpm --registry=https://registry.npm.taobao.org   利用cnpm安装hexo 1cnpm install -g hexo-cli  建立一...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/10/29/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-10-29T12:31:46.762Z" title="Created 2025-10-29 20:31:46">2025-10-29</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git 常用命令">Git 常用命令</a><time datetime="2025-10-30T03:15:14.000Z" title="Created 2025-10-30 11:15:14">2025-10-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="科研利器:tmux的使用方法">科研利器:tmux的使用方法</a><time datetime="2025-10-29T14:53:10.000Z" title="Created 2025-10-29 22:53:10">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="制作你的第一篇个人博客!">制作你的第一篇个人博客!</a><time datetime="2025-10-29T13:45:37.000Z" title="Created 2025-10-29 21:45:37">2025-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/29/hello-world/" title="Hello World">Hello World</a><time datetime="2025-10-29T12:31:46.762Z" title="Created 2025-10-29 20:31:46">2025-10-29</time></div></div></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-Git-常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time class="dt-published" datetime="2025-10-30T03:15:14.000Z" itemprop="datePublished">2025-10-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+    <ul class="card-archive-list">
       
-        <p>Git 是最常用的分布式版本控制系统之一，命令非常多，但其实常用的就几十个左右。下面是一份「最常用 Git 命令速查表」，并按用途分类</p>
-<hr>
-<h2 id="🧱-一、初始化与配置"><a href="#🧱-一、初始化与配置" class="headerlink" title="🧱 一、初始化与配置"></a>🧱 一、初始化与配置</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git init</code></td>
-<td>在当前目录初始化一个新的 Git 仓库</td>
-</tr>
-<tr>
-<td><code>git clone &lt;url&gt;</code></td>
-<td>克隆远程仓库到本地</td>
-</tr>
-<tr>
-<td><code>git config --global user.name &quot;YourName&quot;</code></td>
-<td>设置全局用户名</td>
-</tr>
-<tr>
-<td><code>git config --global user.email &quot;you@example.com&quot;</code></td>
-<td>设置全局邮箱</td>
-</tr>
-<tr>
-<td><code>git config --list</code></td>
-<td>查看当前配置</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="📁-二、查看仓库状态与历史"><a href="#📁-二、查看仓库状态与历史" class="headerlink" title="📁 二、查看仓库状态与历史"></a>📁 二、查看仓库状态与历史</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git status</code></td>
-<td>查看当前工作区状态（修改、暂存等）</td>
-</tr>
-<tr>
-<td><code>git log</code></td>
-<td>查看提交历史</td>
-</tr>
-<tr>
-<td><code>git log --oneline --graph --all</code></td>
-<td>以简洁图形方式查看提交历史</td>
-</tr>
-<tr>
-<td><code>git show &lt;commit&gt;</code></td>
-<td>显示某次提交的详细信息</td>
-</tr>
-<tr>
-<td><code>git diff</code></td>
-<td>查看工作区与暂存区的区别</td>
-</tr>
-<tr>
-<td><code>git diff --staged</code></td>
-<td>查看暂存区与上一次提交的区别</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="💾-三、添加与提交修改"><a href="#💾-三、添加与提交修改" class="headerlink" title="💾 三、添加与提交修改"></a>💾 三、添加与提交修改</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git add &lt;file&gt;</code></td>
-<td>添加单个文件到暂存区</td>
-</tr>
-<tr>
-<td><code>git add .</code></td>
-<td>添加所有修改到暂存区</td>
-</tr>
-<tr>
-<td><code>git commit -m &quot;message&quot;</code></td>
-<td>提交修改并添加提交说明</td>
-</tr>
-<tr>
-<td><code>git commit -am &quot;message&quot;</code></td>
-<td>跳过暂存区直接提交已追踪文件的修改</td>
-</tr>
-<tr>
-<td><code>git restore &lt;file&gt;</code></td>
-<td>撤销工作区修改</td>
-</tr>
-<tr>
-<td><code>git restore --staged &lt;file&gt;</code></td>
-<td>将暂存区文件移回工作区（取消暂存）</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🌳-四、分支管理"><a href="#🌳-四、分支管理" class="headerlink" title="🌳 四、分支管理"></a>🌳 四、分支管理</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git branch</code></td>
-<td>查看本地分支</td>
-</tr>
-<tr>
-<td><code>git branch &lt;name&gt;</code></td>
-<td>新建分支</td>
-</tr>
-<tr>
-<td><code>git checkout &lt;name&gt;</code></td>
-<td>切换到某分支</td>
-</tr>
-<tr>
-<td><code>git checkout -b &lt;name&gt;</code></td>
-<td>新建并切换到该分支</td>
-</tr>
-<tr>
-<td><code>git merge &lt;name&gt;</code></td>
-<td>将指定分支合并到当前分支</td>
-</tr>
-<tr>
-<td><code>git branch -d &lt;name&gt;</code></td>
-<td>删除本地分支</td>
-</tr>
-<tr>
-<td><code>git switch &lt;name&gt;</code></td>
-<td>切换分支（新版推荐）</td>
-</tr>
-<tr>
-<td><code>git switch -c &lt;name&gt;</code></td>
-<td>新建并切换分支（新版推荐）</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🌐-五、远程仓库操作"><a href="#🌐-五、远程仓库操作" class="headerlink" title="🌐 五、远程仓库操作"></a>🌐 五、远程仓库操作</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git remote -v</code></td>
-<td>查看当前远程仓库</td>
-</tr>
-<tr>
-<td><code>git remote add origin &lt;url&gt;</code></td>
-<td>关联远程仓库</td>
-</tr>
-<tr>
-<td><code>git fetch</code></td>
-<td>获取远程更新但不合并</td>
-</tr>
-<tr>
-<td><code>git pull</code></td>
-<td>拉取远程更新并合并</td>
-</tr>
-<tr>
-<td><code>git push</code></td>
-<td>推送本地更新到远程</td>
-</tr>
-<tr>
-<td><code>git push -u origin &lt;branch&gt;</code></td>
-<td>首次推送并设置默认远程分支</td>
-</tr>
-<tr>
-<td><code>git push origin --delete &lt;branch&gt;</code></td>
-<td>删除远程分支</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🔙-六、回退与撤销操作"><a href="#🔙-六、回退与撤销操作" class="headerlink" title="🔙 六、回退与撤销操作"></a>🔙 六、回退与撤销操作</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git reset &lt;file&gt;</code></td>
-<td>取消暂存某文件</td>
-</tr>
-<tr>
-<td><code>git reset --hard &lt;commit&gt;</code></td>
-<td>回退到指定提交（会丢失修改）</td>
-</tr>
-<tr>
-<td><code>git reset --soft &lt;commit&gt;</code></td>
-<td>回退到指定提交但保留修改</td>
-</tr>
-<tr>
-<td><code>git revert &lt;commit&gt;</code></td>
-<td>生成一个新的提交来撤销某次提交</td>
-</tr>
-<tr>
-<td><code>git reflog</code></td>
-<td>查看所有操作日志（可找回丢失的提交）</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🧩-七、标签（Tag）"><a href="#🧩-七、标签（Tag）" class="headerlink" title="🧩 七、标签（Tag）"></a>🧩 七、标签（Tag）</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git tag</code></td>
-<td>查看标签</td>
-</tr>
-<tr>
-<td><code>git tag &lt;name&gt;</code></td>
-<td>创建轻量标签</td>
-</tr>
-<tr>
-<td><code>git tag -a &lt;name&gt; -m &quot;message&quot;</code></td>
-<td>创建带注释标签</td>
-</tr>
-<tr>
-<td><code>git push origin &lt;tag&gt;</code></td>
-<td>推送某个标签到远程</td>
-</tr>
-<tr>
-<td><code>git push origin --tags</code></td>
-<td>推送所有标签到远程</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🧰-八、其他实用命令"><a href="#🧰-八、其他实用命令" class="headerlink" title="🧰 八、其他实用命令"></a>🧰 八、其他实用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>git stash</code></td>
-<td>临时保存当前修改</td>
-</tr>
-<tr>
-<td><code>git stash pop</code></td>
-<td>恢复最近一次保存的修改</td>
-</tr>
-<tr>
-<td><code>git cherry-pick &lt;commit&gt;</code></td>
-<td>将某次提交应用到当前分支</td>
-</tr>
-<tr>
-<td><code>git blame &lt;file&gt;</code></td>
-<td>查看文件每一行的修改者和提交号</td>
-</tr>
-<tr>
-<td><code>git clean -fd</code></td>
-<td>清除未跟踪的文件和文件夹</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="💡-常用工作流举例"><a href="#💡-常用工作流举例" class="headerlink" title="💡 常用工作流举例"></a>💡 常用工作流举例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化仓库</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加远程仓库</span></span><br><span class="line">git remote add origin https://github.com/user/repo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建分支并切换</span></span><br><span class="line">git checkout -b dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改代码后提交</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;fix bug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送到远程</span></span><br><span class="line">git push -u origin dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支</span></span><br><span class="line">git checkout main</span><br><span class="line">git merge dev</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT</a></p>
-
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              October 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cmhfyfclp0000iwuk0kxrde3f" data-title="Git 常用命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-科研利器-tmux的使用方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2025-10-29T14:53:10.000Z" itemprop="datePublished">2025-10-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">科研利器:tmux的使用方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 <strong>VSCode 中配置 tmux</strong>，这是进阶开发者常用的后台运行方式。<br>配置好之后，你就可以在 VSCode 的终端中像在服务器上一样：<br>👉 <strong>后台运行 Python、随时分离、重新连接、查看输出，不卡终端！</strong></p>
-<hr>
-<h2 id="🧩-一、什么是-tmux？"><a href="#🧩-一、什么是-tmux？" class="headerlink" title="🧩 一、什么是 tmux？"></a>🧩 一、什么是 tmux？</h2><p><code>tmux</code>（Terminal Multiplexer） 是一个终端复用器，可以：</p>
-<ul>
-<li>在一个终端里开多个“窗口”；</li>
-<li>让程序在后台持续运行；</li>
-<li>即使关闭 VSCode 或 SSH 连接，也能再回来继续。</li>
-</ul>
-<hr>
-<h2 id="⚙️-二、tmux-的安装"><a href="#⚙️-二、tmux-的安装" class="headerlink" title="⚙️ 二、tmux 的安装"></a>⚙️ 二、tmux 的安装</h2><h3 id="🪟-Windows-用户（两种方式）："><a href="#🪟-Windows-用户（两种方式）：" class="headerlink" title="🪟 Windows 用户（两种方式）："></a>🪟 Windows 用户（两种方式）：</h3><h4 id="✅-如果你使用的是-WSL-Ubuntu-on-Windows-："><a href="#✅-如果你使用的是-WSL-Ubuntu-on-Windows-：" class="headerlink" title="✅ 如果你使用的是 **WSL (Ubuntu on Windows)**："></a>✅ 如果你使用的是 **WSL (Ubuntu on Windows)**：</h4><p>直接在 WSL 终端中运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install tmux -y</span><br></pre></td></tr></table></figure>
-
-<h4 id="❌-如果你只用-Windows-原生终端："><a href="#❌-如果你只用-Windows-原生终端：" class="headerlink" title="❌ 如果你只用 Windows 原生终端："></a>❌ 如果你只用 Windows 原生终端：</h4><p>原生 Windows 没有 tmux，建议：</p>
-<ul>
-<li>在 VSCode 中使用 <strong>WSL 终端</strong>；</li>
-<li>或者安装 <strong>Git Bash</strong> 并在其中使用 tmux（较复杂）。</li>
-</ul>
-<blockquote>
-<p>🚀 推荐方式：在 VSCode 使用 <strong>WSL + Ubuntu</strong> 环境，这样完全等同于 Linux。</p>
-</blockquote>
-<hr>
-<h3 id="🐧-Linux-macOS："><a href="#🐧-Linux-macOS：" class="headerlink" title="🐧 Linux &#x2F; macOS："></a>🐧 Linux &#x2F; macOS：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install tmux -y       <span class="comment"># Ubuntu / Debian</span></span><br><span class="line"><span class="built_in">sudo</span> dnf install tmux -y       <span class="comment"># Fedora</span></span><br><span class="line">brew install tmux              <span class="comment"># macOS (用 Homebrew)</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="🧰-三、在-VSCode-里使用-tmux"><a href="#🧰-三、在-VSCode-里使用-tmux" class="headerlink" title="🧰 三、在 VSCode 里使用 tmux"></a>🧰 三、在 VSCode 里使用 tmux</h2><h3 id="✅-1-打开终端"><a href="#✅-1-打开终端" class="headerlink" title="✅ 1. 打开终端"></a>✅ 1. 打开终端</h3><p>在 VSCode 中打开一个终端（&#96;Ctrl + &#96;&#96;）。</p>
-<p>确认 tmux 是否安装成功：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux -V</span><br></pre></td></tr></table></figure>
-
-<p>应该输出类似：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux 3.4</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="✅-2-启动一个-tmux-会话"><a href="#✅-2-启动一个-tmux-会话" class="headerlink" title="✅ 2. 启动一个 tmux 会话"></a>✅ 2. 启动一个 tmux 会话</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s myjob</span><br></pre></td></tr></table></figure>
-
-<p>你会进入一个新的 tmux 会话（底部有绿色状态栏）。<br>然后运行你的 Python 脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python script.py</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="✅-3-分离（让脚本后台运行）"><a href="#✅-3-分离（让脚本后台运行）" class="headerlink" title="✅ 3. 分离（让脚本后台运行）"></a>✅ 3. 分离（让脚本后台运行）</h3><p>按下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl + B</span><br></pre></td></tr></table></figure>
-
-<p>然后再按：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D</span><br></pre></td></tr></table></figure>
-
-<p>屏幕会提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[detached (from session myjob)]</span><br></pre></td></tr></table></figure>
-
-<p>此时脚本仍在后台运行。<br>你可以关闭 VSCode、关机、重新登录都没问题。</p>
-<hr>
-<h3 id="✅-4-重新连接"><a href="#✅-4-重新连接" class="headerlink" title="✅ 4. 重新连接"></a>✅ 4. 重新连接</h3><p>当你重新打开 VSCode 后，在终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux attach -t myjob</span><br></pre></td></tr></table></figure>
-
-<p>✅ 你就能看到 Python 程序仍在运行，输出还在刷新！</p>
-<hr>
-<h3 id="✅-5-查看所有会话"><a href="#✅-5-查看所有会话" class="headerlink" title="✅ 5. 查看所有会话"></a>✅ 5. 查看所有会话</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
-
-<p>输出示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myjob: 1 windows (created Wed Oct 29 14:00:00 2025)</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="✅-6-杀掉会话（结束后台任务）"><a href="#✅-6-杀掉会话（结束后台任务）" class="headerlink" title="✅ 6. 杀掉会话（结束后台任务）"></a>✅ 6. 杀掉会话（结束后台任务）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux kill-session -t myjob</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="💡-四、进阶：VSCode-tmux-自动化体验更好"><a href="#💡-四、进阶：VSCode-tmux-自动化体验更好" class="headerlink" title="💡 四、进阶：VSCode + tmux 自动化体验更好"></a>💡 四、进阶：VSCode + tmux 自动化体验更好</h2><p>你可以安装以下插件：</p>
-<ol>
-<li><strong>“tmux” 插件</strong>（在 VSCode 扩展市场里搜 <code>tmux</code>）；</li>
-<li>或者 <strong>“Remote - WSL”</strong> 插件（如果你在 Windows 上用 WSL）。</li>
-</ol>
-<p>这些插件可以：</p>
-<ul>
-<li>在 VSCode 的终端面板中直接显示多个 tmux 窗口；</li>
-<li>支持快捷键在 tmux 窗格间切换；</li>
-<li>自动保存 tmux 会话布局。</li>
-</ul>
-<hr>
-<h2 id="✅-五、常用快捷键速查表"><a href="#✅-五、常用快捷键速查表" class="headerlink" title="✅ 五、常用快捷键速查表"></a>✅ 五、常用快捷键速查表</h2><table>
-<thead>
-<tr>
-<th>动作</th>
-<th>按键</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>创建新会话</td>
-<td><code>tmux new -s name</code></td>
-</tr>
-<tr>
-<td>分离会话（后台运行）</td>
-<td><code>Ctrl+B</code>, 然后按 <code>D</code></td>
-</tr>
-<tr>
-<td>列出所有会话</td>
-<td><code>tmux ls</code></td>
-</tr>
-<tr>
-<td>重新连接会话</td>
-<td><code>tmux attach -t name</code></td>
-</tr>
-<tr>
-<td>关闭会话</td>
-<td><code>tmux kill-session -t name</code></td>
-</tr>
-<tr>
-<td>在会话中开新窗格</td>
-<td><code>Ctrl+B</code>, 然后按 <code>%</code>（垂直）或 <code>&quot;</code>（水平）</td>
-</tr>
-<tr>
-<td>在窗格间切换</td>
-<td><code>Ctrl+B</code>, 然后用方向键</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🎯-实践"><a href="#🎯-实践" class="headerlink" title="🎯 实践"></a>🎯 实践</h2><p>假设你要在后台持续运行 <code>script.py</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s pano</span><br><span class="line">python script.py</span><br><span class="line"><span class="comment"># Ctrl+B 然后 D （挂起后台）</span></span><br></pre></td></tr></table></figure>
-
-<p>重开 VSCode 后：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux attach -t pano</span><br></pre></td></tr></table></figure>
-
-<p>✅ 就能继续看到拼接进度或调试信息。</p>
-<hr>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cmhfyfclw0003iwuk4exddlss" data-title="科研利器:tmux的使用方法" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-制作你的第一篇个人博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2025-10-29T13:45:37.000Z" itemprop="datePublished">2025-10-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">制作你的第一篇个人博客!</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本教程利用 <strong>hexo+Github</strong> 来制作和本博客一样的个人博客<br>hexo网址: <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a></p>
-<h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3><ol>
-<li><p>从 <a href="%22https://nodejs.org/zh-cn%22">Nodejs的官网</a> 下载并安装nodejs, 因为Hexo需要nodejs的支持</p>
-<p><code>Node.js</code>是一个基于 Chrome V8 引擎 的 JavaScript 运行时环境，它可以让你在服务器端运行 JavaScript，而不仅仅是在浏览器中。Node.js 是一个 事件驱动、非阻塞式 I&#x2F;O 模型，适合开发高性能、可扩展的网络应用程序，特别是处理并发请求时。</p>
-<p>如何确认是否安装了nodejs?<br>在终端输入<code>node -v</code>, <code>npm -v</code>会显示已安装的 版本</p>
-</li>
-<li><p>尝试直接安装hexo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>若成功, 转第5步; 若失败, 继续下面第3步</p>
-</li>
-<li><p>利用淘宝的镜像来加速下载, 在终端输入</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用<code>cnpm</code>安装hexo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立一个存放博客的文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog/</span><br></pre></td></tr></table></figure>
-<p>此时应该出现了名为<code>blog</code>的文件夹</p>
-</li>
-<li><p>可以用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init # 初始化</span><br><span class="line">hexo s # 启动预览</span><br></pre></td></tr></table></figure>
-<p>此时如果在本地浏览器中输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:4000</span><br></pre></td></tr></table></figure>
-<p>可以看到启动了我们的博客</p>
-</li>
-<li><p>在github中新建一个分支比如<code>bellaa.github.io</code></p>
-</li>
-<li><p>在当前终端<code>blog</code>目录下,下载一个插件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果刚才没有下载cnpm的话,就要相应地用npm而不是cnpm</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑一下<code>_config.yml</code>文件的末尾<code>#Deployment</code>的部分</p>
-  <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line"><span class="attr">repo:</span> <span class="string">&lt;仓库地址&gt;</span></span><br><span class="line"><span class="attr">branch:</span> <span class="string">master</span> <span class="comment"># 有的是main</span></span><br><span class="line"><span class="comment"># 注意 冒号后面需要有一个空格</span></span><br></pre></td></tr></table></figure>
-<p>   我的截图如下<br>   <img src="/images/image.png" alt="_config.yml文件截图"></p>
-</li>
-<li><p>运行<code>hexo d</code>即可部署到github上</p>
-</li>
-<li><p>在浏览器中输入<code>bellaa.github.io</code>即可看到博客</p>
-<p><img src="/images/image-1.png" alt="报错404"></p>
-</li>
-</ol>
-<p>   如果显示404, 我们点击它的<a href="%22https://docs.github.com/en/pages%22">full document</a>链接去阅读并按照要求操作即可<br>    (其实有时只需要等待一段时间即可)</p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>hexo init</code></td>
-<td>初始化一个新的博客</td>
-</tr>
-<tr>
-<td><code>hexo new &quot;My New Post&quot;</code></td>
-<td>新建一篇博客</td>
-</tr>
-<tr>
-<td><code>hexo n</code></td>
-<td>同上</td>
-</tr>
-<tr>
-<td><code>hexo clean</code></td>
-<td>清理缓存文件与已生成的静态文件(常用语hexo g 前)</td>
-</tr>
-<tr>
-<td><code>hexo generate</code></td>
-<td>生成静态网页(在public&#x2F;文件夹中)</td>
-</tr>
-<tr>
-<td><code>hexo g</code></td>
-<td>同上</td>
-</tr>
-<tr>
-<td><code>hexo server</code></td>
-<td>启动本地服务器, 默认端口4000, 可预览博客</td>
-</tr>
-<tr>
-<td><code>hexo s</code></td>
-<td>同上</td>
-</tr>
-<tr>
-<td><code>hexo deploy</code></td>
-<td>部署网站到远程</td>
-</tr>
-<tr>
-<td><code>hexo d</code></td>
-<td>同上</td>
-</tr>
-<tr>
-<td><code>hexo list [type]</code></td>
-<td>列出某类内容(如posts, pages, tags 等)</td>
-</tr>
-<tr>
-<td><code>hexo version</code></td>
-<td>查看hexo的版本号</td>
-</tr>
-<tr>
-<td><code>hexo help</code></td>
-<td>产看命令帮助文档</td>
-</tr>
-</tbody></table>
-<h3 id="一些注意…"><a href="#一些注意…" class="headerlink" title="一些注意…"></a>一些注意…</h3><ol>
-<li>在部署时, 有时会因为网络问题出现报错, 可以过段时间再次尝试<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/你的用户名/你的用户名.github.io.git/&#x27;: Failed to connect to github.com port 443 after 21091 ms: Could not connect to server</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure></li>
-<li>使用<code>hexo d</code>命令部署后需要等待一段时间才能在网页看到更新后的显示, 可以使用<code>ping github.com</code>进行测试</li>
-<li>关于<strong>图片显示</strong>问题<ol>
-<li>在<code>source/</code>文件夹下新建<code>images</code>文件夹，并将图片放到此文件夹中，在markdown中引用图片的格式为<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片说明</span>](<span class="link">/images/image.png</span>)</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty">B站视频</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="cmhfyfclr0001iwuk95i1dg6n" data-title="制作你的第一篇个人博客!" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/10/29/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-10-29T12:31:46.762Z" itemprop="datePublished">2025-10-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/10/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/10/29/hello-world/" data-id="cmhfyfcls0002iwuk0nytg526" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git 常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2025/10/29/%E7%A7%91%E7%A0%94%E5%88%A9%E5%99%A8-tmux%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">科研利器:tmux的使用方法</a>
-          </li>
-        
-          <li>
-            <a href="/2025/10/29/%E5%88%B6%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">制作你的第一篇个人博客!</a>
-          </li>
-        
-          <li>
-            <a href="/2025/10/29/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-11-01T08:17:16.284Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
