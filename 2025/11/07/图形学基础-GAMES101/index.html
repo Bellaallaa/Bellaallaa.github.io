@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/img1.jpg">
 <meta property="article:published_time" content="2025-11-07T03:51:12.000Z">
-<meta property="article:modified_time" content="2025-11-08T08:33:54.077Z">
+<meta property="article:modified_time" content="2025-12-26T13:05:14.526Z">
 <meta property="article:author" content="ListenNing">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/img/img1.jpg"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "http://example.com/2025/11/07/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80-GAMES101/",
   "image": "http://example.com/img/img1.jpg",
   "datePublished": "2025-11-07T03:51:12.000Z",
-  "dateModified": "2025-11-08T08:33:54.077Z",
+  "dateModified": "2025-12-26T13:05:14.526Z",
   "author": [
     {
       "@type": "Person",
@@ -158,13 +158,13 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/pink_back.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/blue_back.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Welcome to My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">图形学基础:GAMES101</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">图形学基础:GAMES101</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-11-07T03:51:12.000Z" title="Created 2025-11-07 11:51:12">2025-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-11-08T08:33:54.077Z" title="Updated 2025-11-08 16:33:54">2025-11-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="一、数学基础：线性代数"><a href="#一、数学基础：线性代数" class="headerlink" title="一、数学基础：线性代数"></a>一、数学基础：线性代数</h1><p>关于向量（vector）以及向量点乘（dot product）在高中已经学过，下面简单介绍 <strong>向量叉乘（cross product）</strong> 以及 <strong>正交基（orthonormal bases）和坐标系（coordinate frames）</strong></p>
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/pink_back.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/blue_back.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Welcome to My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">图形学基础:GAMES101</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">图形学基础:GAMES101</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-11-07T03:51:12.000Z" title="Created 2025-11-07 11:51:12">2025-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-12-26T13:05:14.526Z" title="Updated 2025-12-26 21:05:14">2025-12-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="一、数学基础：线性代数"><a href="#一、数学基础：线性代数" class="headerlink" title="一、数学基础：线性代数"></a>一、数学基础：线性代数</h1><p>关于向量（vector）以及向量点乘（dot product）在高中已经学过，下面简单介绍 <strong>向量叉乘（cross product）</strong> 以及 <strong>正交基（orthonormal bases）和坐标系（coordinate frames）</strong></p>
 <h2 id="1-向量叉乘（cross-product）"><a href="#1-向量叉乘（cross-product）" class="headerlink" title="1. 向量叉乘（cross product）"></a>1. 向量叉乘（cross product）</h2><p>$$ \mathbf{a} \times \mathbf{b} &#x3D; \mathbf{c} $$<br>其中 $\mathbf{c}$ 向量的方向按照右手定则来判定, 向量的长度为 $ |\mathbf{a}| |\mathbf{b}| \sin(\theta) $</p>
 <blockquote>
 <p>右手定则<br>方法一: 右手大拇指和食指分别指向第一个,第二个向量的方向,中指的方向就是结果向量的方向<br>方法二: 右手四指由第一个向量到第二个向量的方向弯曲,大拇指的方向就是结果向量的方向</p>
 </blockquote>
 <p>用笛卡尔公式来表示叉乘:<br>$$<br>\mathbf{a} \times \mathbf{b} &#x3D;<br>\begin{pmatrix}<br>y_a z_b - y_b z_a \<br>z_a x_b - x_a z_b \<br>x_a y_b - y_a x_b<br>\end{pmatrix}<br>$$<br>$$<br>\mathbf{a} \times \mathbf{b} &#x3D; A^* \mathbf{b} &#x3D;<br>\begin{pmatrix}<br>0 &amp; -z_a &amp; y_a \<br>z_a &amp; 0 &amp; -x_a \<br>-y_a &amp; x_a &amp; 0<br>\end{pmatrix}<br>\begin{pmatrix}<br>x_b \<br>y_b \<br>z_b<br>\end{pmatrix}<br>$$</p>
-<p>利用叉乘, 我们可以区分向量的左右位置关系, 可以区分点在内部还是外部<br><img src="/.com//%5Cimages%5C%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80-GAMES101%5Cimage0.png" alt="alt text"></p>
+<p>利用叉乘, 我们可以区分向量的左右位置关系, 可以区分点在内部还是外部<br><img src="/images/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80-GAMES101/image0.png" alt="alt text"></p>
 <p>矩阵叉乘不具有交换律, 具有分配律</p>
 <h2 id="2-正交基（orthonormal-bases）和坐标系（coordinate-frames）"><a href="#2-正交基（orthonormal-bases）和坐标系（coordinate-frames）" class="headerlink" title="2. 正交基（orthonormal bases）和坐标系（coordinate frames）"></a>2. 正交基（orthonormal bases）和坐标系（coordinate frames）</h2><p><img src="/.com//%5Cimages%5C%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80-GAMES101%5Cimage01.png" alt="alt text"></p>
 <h2 id="3-矩阵-matrices"><a href="#3-矩阵-matrices" class="headerlink" title="3. 矩阵(matrices)"></a>3. 矩阵(matrices)</h2><p>回忆矩阵乘法: 不具有交换律, 具有结合律, 分配律</p>
