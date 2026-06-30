@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C++ STL 函数复习表 | LeetCode Hot 150</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --ink: #1e2633;
+      --muted: #5d6878;
+      --line: #d9dfeb;
+      --head: #edf2f8;
+      --accent: #126d71;
+      --accent-2: #8a4f12;
+      --code: #eef6f6;
+      --tip-bg: #15202b;
+      --tip-ink: #f8fbff;
+      --shadow: 0 14px 34px rgba(27, 35, 48, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #eef4f7 0%, var(--bg) 280px),
+        var(--bg);
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    header {
+      padding: 28px clamp(16px, 4vw, 42px) 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 980px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    main {
+      padding: 20px clamp(12px, 3vw, 34px) 40px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .search {
+      width: min(440px, 100%);
+      height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      background: var(--panel);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(18, 109, 113, 0.14);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      max-height: calc(100vh - 190px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: max-content;
+      min-width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      min-width: 178px;
+      max-width: 230px;
+      padding: 10px 11px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      background: var(--panel);
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      color: #273243;
+      background: var(--head);
+      text-align: left;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      min-width: 140px;
+      max-width: 160px;
+      font-weight: 700;
+      background: #f8fafc;
+    }
+
+    th:first-child {
+      z-index: 4;
+      background: #e4ebf3;
+    }
+
+    td {
+      color: #243041;
+    }
+
+    td.empty {
+      color: #a0a8b5;
+      background: #fbfcfe;
+    }
+
+    code {
+      display: inline;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #0f4f54;
+      background: var(--code);
+      font-family: Consolas, "Cascadia Mono", "Courier New", monospace;
+      font-size: 12.5px;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .has-tip {
+      cursor: help;
+      outline: none;
+    }
+
+    .has-tip:hover,
+    .has-tip:focus {
+      background: #fff8ec;
+    }
+
+    .section-row td {
+      min-width: 100%;
+      color: var(--accent-2);
+      background: #fff3dd;
+      font-weight: 700;
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 20;
+      display: none;
+      width: min(470px, calc(100vw - 24px));
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      color: var(--tip-ink);
+      background: var(--tip-bg);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+      pointer-events: none;
+    }
+
+    .tooltip strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #9ee0df;
+      font-size: 13px;
+    }
+
+    .tooltip pre {
+      margin: 0;
+      overflow: auto;
+      color: var(--tip-ink);
+      font-family: Consolas, "Cascadia Mono", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    mark {
+      padding: 0 2px;
+      border-radius: 3px;
+      background: #ffe08a;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding-top: 22px;
+      }
+
+      main {
+        padding-inline: 10px;
+      }
+
+      th,
+      td {
+        min-width: 160px;
+        padding: 9px;
+      }
+
+      th:first-child,
+      td:first-child {
+        min-width: 118px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>C++ STL 函数复习表</h1>
+    <p class="subtitle">面向 LeetCode Hot 150 的高频语法速查。鼠标悬浮或键盘聚焦任意单元格，可查看最小例子和预期输出；搜索框可按函数名、容器名或操作名过滤。</p>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <input id="search" class="search" type="search" placeholder="搜索：find / push_back / map / 排序 / 长度...">
+      <span class="hint">建议先记住每一行的“操作意图”，再横向比较不同容器的写法。</span>
+    </div>
+
+    <div class="table-wrap" aria-label="C++ STL 函数复习大表格">
+      <table id="stl-table">
+        <thead>
+          <tr>
+            <th>操作</th>
+            <th>string</th>
+            <th>vector / array</th>
+            <th>deque / list</th>
+            <th>stack</th>
+            <th>queue</th>
+            <th>priority_queue</th>
+            <th>set / multiset</th>
+            <th>unordered_set</th>
+            <th>map / unordered_map</th>
+            <th>&lt;algorithm&gt; 高频</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>声明与初始化</td>
+            <td class="has-tip" tabindex="0"><code>string s = "abc";</code><template><strong>string 初始化</strong><pre>string s = "abc";
+cout &lt;&lt; s;
+
+输出:
+abc</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>vector&lt;int&gt; v = {1,2,3};</code><br><code>array&lt;int,3&gt; a = {1,2,3};</code><template><strong>vector / array 初始化</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+array&lt;int, 3&gt; a = {4, 5, 6};
+cout &lt;&lt; v[1] &lt;&lt; " " &lt;&lt; a[2];
+
+输出:
+2 6</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>deque&lt;int&gt; dq;</code><br><code>list&lt;int&gt; li = {1,2};</code><template><strong>双端队列 / 链表初始化</strong><pre>deque&lt;int&gt; dq = {2, 3};
+list&lt;int&gt; li = {7, 8};
+cout &lt;&lt; dq.front() &lt;&lt; " " &lt;&lt; li.back();
+
+输出:
+2 8</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>stack&lt;int&gt; st;</code><template><strong>stack 初始化</strong><pre>stack&lt;int&gt; st;
+st.push(10);
+cout &lt;&lt; st.top();
+
+输出:
+10</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>queue&lt;int&gt; q;</code><template><strong>queue 初始化</strong><pre>queue&lt;int&gt; q;
+q.push(10);
+cout &lt;&lt; q.front();
+
+输出:
+10</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>priority_queue&lt;int&gt; pq;</code><br><code>priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; minpq;</code><template><strong>最大堆 / 最小堆</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(2); pq.push(5);
+cout &lt;&lt; pq.top();
+
+输出:
+5</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>set&lt;int&gt; se;</code><br><code>multiset&lt;int&gt; ms;</code><template><strong>有序集合初始化</strong><pre>set&lt;int&gt; se = {3, 1, 3};
+for (int x : se) cout &lt;&lt; x &lt;&lt; " ";
+
+输出:
+1 3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>unordered_set&lt;int&gt; us;</code><template><strong>哈希集合初始化</strong><pre>unordered_set&lt;int&gt; us = {3, 1, 3};
+cout &lt;&lt; us.size();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>map&lt;string,int&gt; mp;</code><br><code>unordered_map&lt;char,int&gt; cnt;</code><template><strong>映射初始化</strong><pre>unordered_map&lt;char, int&gt; cnt;
+cnt['a'] = 2;
+cout &lt;&lt; cnt['a'];
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>#include &lt;algorithm&gt;</code><br><code>#include &lt;numeric&gt;</code><template><strong>常用头文件</strong><pre>#include &lt;bits/stdc++.h&gt; // 刷题常用
+using namespace std;
+
+// 或按需 include:
+// &lt;vector&gt; &lt;string&gt; &lt;queue&gt;
+// &lt;set&gt; &lt;unordered_map&gt; &lt;algorithm&gt;</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>长度 / 数量</td>
+            <td class="has-tip" tabindex="0"><code>s.size()</code><br><code>s.length()</code><template><strong>字符串长度</strong><pre>string s = "abcd";
+cout &lt;&lt; s.size() &lt;&lt; " " &lt;&lt; s.length();
+
+输出:
+4 4</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.size()</code><br><code>a.size()</code><template><strong>容器元素个数</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+cout &lt;&lt; v.size();
+
+输出:
+3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.size()</code><br><code>li.size()</code><template><strong>deque / list 元素个数</strong><pre>list&lt;int&gt; li = {1, 2, 3, 4};
+cout &lt;&lt; li.size();
+
+输出:
+4</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>st.size()</code><template><strong>栈元素个数</strong><pre>stack&lt;int&gt; st;
+st.push(1); st.push(2);
+cout &lt;&lt; st.size();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>q.size()</code><template><strong>队列元素个数</strong><pre>queue&lt;int&gt; q;
+q.push(1); q.push(2);
+cout &lt;&lt; q.size();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pq.size()</code><template><strong>堆元素个数</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(9);
+cout &lt;&lt; pq.size();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>se.size()</code><br><code>ms.count(x)</code><template><strong>集合大小和重复次数</strong><pre>multiset&lt;int&gt; ms = {1, 1, 2};
+cout &lt;&lt; ms.size() &lt;&lt; " " &lt;&lt; ms.count(1);
+
+输出:
+3 2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.size()</code><template><strong>哈希集合大小</strong><pre>unordered_set&lt;int&gt; us = {1, 1, 2};
+cout &lt;&lt; us.size();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp.size()</code><br><code>cnt[ch]</code><template><strong>映射大小 / 计数值</strong><pre>unordered_map&lt;char, int&gt; cnt;
+cnt['a']++;
+cnt['a']++;
+cout &lt;&lt; cnt.size() &lt;&lt; " " &lt;&lt; cnt['a'];
+
+输出:
+1 2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>count(begin, end, x)</code><template><strong>统计某值出现次数</strong><pre>vector&lt;int&gt; v = {1, 2, 1, 3};
+cout &lt;&lt; count(v.begin(), v.end(), 1);
+
+输出:
+2</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>判空</td>
+            <td class="has-tip" tabindex="0"><code>s.empty()</code><template><strong>字符串判空</strong><pre>string s = "";
+cout &lt;&lt; boolalpha &lt;&lt; s.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.empty()</code><template><strong>vector 判空</strong><pre>vector&lt;int&gt; v;
+cout &lt;&lt; boolalpha &lt;&lt; v.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.empty()</code><br><code>li.empty()</code><template><strong>deque / list 判空</strong><pre>deque&lt;int&gt; dq;
+cout &lt;&lt; boolalpha &lt;&lt; dq.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>st.empty()</code><template><strong>stack 判空</strong><pre>stack&lt;int&gt; st;
+cout &lt;&lt; boolalpha &lt;&lt; st.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>q.empty()</code><template><strong>queue 判空</strong><pre>queue&lt;int&gt; q;
+cout &lt;&lt; boolalpha &lt;&lt; q.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pq.empty()</code><template><strong>priority_queue 判空</strong><pre>priority_queue&lt;int&gt; pq;
+cout &lt;&lt; boolalpha &lt;&lt; pq.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>se.empty()</code><template><strong>set 判空</strong><pre>set&lt;int&gt; se;
+cout &lt;&lt; boolalpha &lt;&lt; se.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.empty()</code><template><strong>unordered_set 判空</strong><pre>unordered_set&lt;int&gt; us;
+cout &lt;&lt; boolalpha &lt;&lt; us.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp.empty()</code><template><strong>map 判空</strong><pre>map&lt;int, int&gt; mp;
+cout &lt;&lt; boolalpha &lt;&lt; mp.empty();
+
+输出:
+true</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>all_of(...)</code><br><code>any_of(...)</code><template><strong>条件判定</strong><pre>vector&lt;int&gt; v = {2, 4, 6};
+cout &lt;&lt; boolalpha
+     &lt;&lt; all_of(v.begin(), v.end(), [](int x){ return x % 2 == 0; });
+
+输出:
+true</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>访问元素</td>
+            <td class="has-tip" tabindex="0"><code>s[i]</code><br><code>s.at(i)</code><br><code>s.front()</code><br><code>s.back()</code><template><strong>字符串访问</strong><pre>string s = "abc";
+cout &lt;&lt; s[0] &lt;&lt; " " &lt;&lt; s.back();
+
+输出:
+a c</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v[i]</code><br><code>v.at(i)</code><br><code>v.front()</code><br><code>v.back()</code><template><strong>vector 访问</strong><pre>vector&lt;int&gt; v = {5, 6, 7};
+cout &lt;&lt; v.front() &lt;&lt; " " &lt;&lt; v.back();
+
+输出:
+5 7</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq[i]</code><br><code>dq.front()</code><br><code>li.front()</code><br><code>li.back()</code><template><strong>deque / list 访问</strong><pre>deque&lt;int&gt; dq = {1, 2, 3};
+list&lt;int&gt; li = {4, 5};
+cout &lt;&lt; dq[1] &lt;&lt; " " &lt;&lt; li.front();
+
+输出:
+2 4</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>st.top()</code><template><strong>访问栈顶</strong><pre>stack&lt;int&gt; st;
+st.push(3); st.push(8);
+cout &lt;&lt; st.top();
+
+输出:
+8</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>q.front()</code><br><code>q.back()</code><template><strong>访问队头 / 队尾</strong><pre>queue&lt;int&gt; q;
+q.push(3); q.push(8);
+cout &lt;&lt; q.front() &lt;&lt; " " &lt;&lt; q.back();
+
+输出:
+3 8</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pq.top()</code><template><strong>访问堆顶</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(1); pq.push(9); pq.push(4);
+cout &lt;&lt; pq.top();
+
+输出:
+9</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>*se.begin()</code><br><code>*se.rbegin()</code><template><strong>访问最小 / 最大元素</strong><pre>set&lt;int&gt; se = {4, 1, 9};
+cout &lt;&lt; *se.begin() &lt;&lt; " " &lt;&lt; *se.rbegin();
+
+输出:
+1 9</pre></template></td>
+            <td class="empty">无固定顺序；只能迭代访问</td>
+            <td class="has-tip" tabindex="0"><code>mp[key]</code><br><code>mp.at(key)</code><br><code>it-&gt;first</code><br><code>it-&gt;second</code><template><strong>访问 key/value</strong><pre>map&lt;string, int&gt; mp;
+mp["age"] = 20;
+cout &lt;&lt; mp["age"];
+
+输出:
+20</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>*min_element(...)</code><br><code>*max_element(...)</code><template><strong>找最值</strong><pre>vector&lt;int&gt; v = {3, 1, 5};
+cout &lt;&lt; *min_element(v.begin(), v.end())
+     &lt;&lt; " " &lt;&lt; *max_element(v.begin(), v.end());
+
+输出:
+1 5</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>尾部插入</td>
+            <td class="has-tip" tabindex="0"><code>s.push_back(c)</code><br><code>s += "xx"</code><br><code>s.append(t)</code><template><strong>字符串追加</strong><pre>string s = "ab";
+s.push_back('c');
+s += "de";
+cout &lt;&lt; s;
+
+输出:
+abcde</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.push_back(x)</code><br><code>v.emplace_back(args)</code><template><strong>vector 尾插</strong><pre>vector&lt;int&gt; v;
+v.push_back(1);
+v.emplace_back(2);
+cout &lt;&lt; v[0] &lt;&lt; " " &lt;&lt; v[1];
+
+输出:
+1 2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.push_back(x)</code><br><code>li.push_back(x)</code><template><strong>deque / list 尾插</strong><pre>deque&lt;int&gt; dq;
+dq.push_back(7);
+dq.push_back(8);
+cout &lt;&lt; dq.back();
+
+输出:
+8</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>st.push(x)</code><template><strong>stack 入栈</strong><pre>stack&lt;int&gt; st;
+st.push(1);
+st.push(2);
+cout &lt;&lt; st.top();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>q.push(x)</code><br><code>q.emplace(args)</code><template><strong>queue 入队</strong><pre>queue&lt;int&gt; q;
+q.push(1);
+q.push(2);
+cout &lt;&lt; q.back();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pq.push(x)</code><br><code>pq.emplace(x)</code><template><strong>priority_queue 入堆</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(3);
+pq.push(10);
+cout &lt;&lt; pq.top();
+
+输出:
+10</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>se.insert(x)</code><br><code>se.emplace(x)</code><template><strong>set 插入</strong><pre>set&lt;int&gt; se;
+se.insert(3);
+se.insert(3);
+cout &lt;&lt; se.size();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.insert(x)</code><br><code>us.emplace(x)</code><template><strong>unordered_set 插入</strong><pre>unordered_set&lt;int&gt; us;
+us.insert(5);
+cout &lt;&lt; us.count(5);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp[key] = val</code><br><code>mp.insert({k,v})</code><br><code>mp.emplace(k,v)</code><template><strong>map 插入 / 赋值</strong><pre>map&lt;string, int&gt; mp;
+mp["a"] = 1;
+mp.emplace("b", 2);
+cout &lt;&lt; mp["a"] &lt;&lt; " " &lt;&lt; mp["b"];
+
+输出:
+1 2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>copy(src.begin(), src.end(), back_inserter(v))</code><template><strong>批量追加</strong><pre>vector&lt;int&gt; a = {1, 2}, b = {3, 4};
+copy(b.begin(), b.end(), back_inserter(a));
+cout &lt;&lt; a.size() &lt;&lt; " " &lt;&lt; a.back();
+
+输出:
+4 4</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>头部插入</td>
+            <td class="has-tip" tabindex="0"><code>s.insert(0, "xx")</code><template><strong>字符串头插</strong><pre>string s = "world";
+s.insert(0, "hi ");
+cout &lt;&lt; s;
+
+输出:
+hi world</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.insert(v.begin(), x)</code><template><strong>vector 头插</strong><pre>vector&lt;int&gt; v = {2, 3};
+v.insert(v.begin(), 1);
+cout &lt;&lt; v[0];
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.push_front(x)</code><br><code>li.push_front(x)</code><template><strong>双端头插</strong><pre>deque&lt;int&gt; dq = {2, 3};
+dq.push_front(1);
+cout &lt;&lt; dq.front();
+
+输出:
+1</pre></template></td>
+            <td class="empty">只能栈顶插入：<code>push</code></td>
+            <td class="empty">只能队尾插入：<code>push</code></td>
+            <td class="empty">按优先级组织：<code>push</code></td>
+            <td class="has-tip" tabindex="0"><code>se.insert(x)</code><template><strong>集合按序插入</strong><pre>set&lt;int&gt; se = {2, 3};
+se.insert(1);
+cout &lt;&lt; *se.begin();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.insert(x)</code><template><strong>哈希集合插入</strong><pre>unordered_set&lt;int&gt; us = {2};
+us.insert(1);
+cout &lt;&lt; us.count(1);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp.insert({k,v})</code><template><strong>map 按 key 排序</strong><pre>map&lt;int, string&gt; mp;
+mp.insert({2, "b"});
+mp.insert({1, "a"});
+cout &lt;&lt; mp.begin()-&gt;second;
+
+输出:
+a</pre></template></td>
+            <td class="empty">通常用容器自身接口</td>
+          </tr>
+
+          <tr>
+            <td>删除元素</td>
+            <td class="has-tip" tabindex="0"><code>s.pop_back()</code><br><code>s.erase(pos, len)</code><template><strong>字符串删除</strong><pre>string s = "abcde";
+s.pop_back();
+s.erase(1, 2);
+cout &lt;&lt; s;
+
+输出:
+ae</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.pop_back()</code><br><code>v.erase(v.begin()+i)</code><template><strong>vector 删除</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+v.erase(v.begin() + 1);
+cout &lt;&lt; v[0] &lt;&lt; " " &lt;&lt; v[1];
+
+输出:
+1 3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.pop_front()</code><br><code>dq.pop_back()</code><br><code>li.erase(it)</code><template><strong>deque / list 删除</strong><pre>deque&lt;int&gt; dq = {1, 2, 3};
+dq.pop_front();
+dq.pop_back();
+cout &lt;&lt; dq.front();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>st.pop()</code><template><strong>stack 出栈</strong><pre>stack&lt;int&gt; st;
+st.push(1); st.push(2);
+st.pop();
+cout &lt;&lt; st.top();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>q.pop()</code><template><strong>queue 出队</strong><pre>queue&lt;int&gt; q;
+q.push(1); q.push(2);
+q.pop();
+cout &lt;&lt; q.front();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pq.pop()</code><template><strong>弹出堆顶</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(1); pq.push(5);
+pq.pop();
+cout &lt;&lt; pq.top();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>se.erase(x)</code><br><code>se.erase(it)</code><template><strong>set 删除</strong><pre>set&lt;int&gt; se = {1, 2, 3};
+se.erase(2);
+cout &lt;&lt; se.count(2);
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.erase(x)</code><template><strong>unordered_set 删除</strong><pre>unordered_set&lt;int&gt; us = {1, 2};
+us.erase(1);
+cout &lt;&lt; us.count(1);
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp.erase(key)</code><br><code>mp.erase(it)</code><template><strong>map 删除</strong><pre>unordered_map&lt;char, int&gt; mp;
+mp['a'] = 3;
+mp.erase('a');
+cout &lt;&lt; mp.count('a');
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.erase(remove(v.begin(), v.end(), x), v.end())</code><template><strong>erase-remove 删除所有 x</strong><pre>vector&lt;int&gt; v = {1, 2, 2, 3};
+v.erase(remove(v.begin(), v.end(), 2), v.end());
+cout &lt;&lt; v.size();
+
+输出:
+2</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>清空 / 重置</td>
+            <td class="has-tip" tabindex="0"><code>s.clear()</code><br><code>s = ""</code><template><strong>清空字符串</strong><pre>string s = "abc";
+s.clear();
+cout &lt;&lt; s.size();
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.clear()</code><br><code>v.assign(n, x)</code><template><strong>清空或重置 vector</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+v.assign(4, 9);
+cout &lt;&lt; v.size() &lt;&lt; " " &lt;&lt; v[0];
+
+输出:
+4 9</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.clear()</code><br><code>li.clear()</code><template><strong>清空 deque / list</strong><pre>deque&lt;int&gt; dq = {1, 2};
+dq.clear();
+cout &lt;&lt; dq.empty();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>st = stack&lt;int&gt;();</code><template><strong>清空 stack</strong><pre>stack&lt;int&gt; st;
+st.push(1);
+st = stack&lt;int&gt;();
+cout &lt;&lt; st.empty();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>q = queue&lt;int&gt;();</code><template><strong>清空 queue</strong><pre>queue&lt;int&gt; q;
+q.push(1);
+q = queue&lt;int&gt;();
+cout &lt;&lt; q.empty();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pq = priority_queue&lt;int&gt;();</code><template><strong>清空 priority_queue</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(1);
+pq = priority_queue&lt;int&gt;();
+cout &lt;&lt; pq.empty();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>se.clear()</code><template><strong>清空 set</strong><pre>set&lt;int&gt; se = {1, 2};
+se.clear();
+cout &lt;&lt; se.size();
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.clear()</code><template><strong>清空 unordered_set</strong><pre>unordered_set&lt;int&gt; us = {1, 2};
+us.clear();
+cout &lt;&lt; us.empty();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp.clear()</code><template><strong>清空 map</strong><pre>map&lt;int, int&gt; mp;
+mp[1] = 10;
+mp.clear();
+cout &lt;&lt; mp.size();
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>fill(v.begin(), v.end(), x)</code><template><strong>填充值</strong><pre>vector&lt;int&gt; v(3);
+fill(v.begin(), v.end(), 7);
+cout &lt;&lt; v[1];
+
+输出:
+7</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>查找元素</td>
+            <td class="has-tip" tabindex="0"><code>s.find(t, pos)</code><br><code>s.rfind(t)</code><template><strong>字符串查找</strong><pre>string s = "leetcode";
+cout &lt;&lt; s.find("code");
+
+输出:
+4</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>find(v.begin(), v.end(), x)</code><template><strong>vector 线性查找</strong><pre>vector&lt;int&gt; v = {4, 2, 7};
+auto it = find(v.begin(), v.end(), 2);
+cout &lt;&lt; (it - v.begin());
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>find(dq.begin(), dq.end(), x)</code><br><code>find(li.begin(), li.end(), x)</code><template><strong>deque / list 线性查找</strong><pre>list&lt;int&gt; li = {4, 2, 7};
+auto it = find(li.begin(), li.end(), 7);
+cout &lt;&lt; (it != li.end());
+
+输出:
+1</pre></template></td>
+            <td class="empty">无查找接口；通常边弹边查</td>
+            <td class="empty">无查找接口；通常边弹边查</td>
+            <td class="empty">只能高效访问堆顶</td>
+            <td class="has-tip" tabindex="0"><code>se.find(x)</code><br><code>se.count(x)</code><template><strong>set 查找 O(log n)</strong><pre>set&lt;int&gt; se = {1, 3, 5};
+cout &lt;&lt; (se.find(3) != se.end());
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.find(x)</code><br><code>us.count(x)</code><template><strong>unordered_set 查找均摊 O(1)</strong><pre>unordered_set&lt;int&gt; us = {1, 3, 5};
+cout &lt;&lt; us.count(4);
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp.find(key)</code><br><code>mp.count(key)</code><template><strong>map 查找 key</strong><pre>unordered_map&lt;string, int&gt; mp;
+mp["one"] = 1;
+cout &lt;&lt; (mp.find("one") != mp.end());
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>find_if(begin, end, pred)</code><template><strong>按条件查找</strong><pre>vector&lt;int&gt; v = {1, 4, 9};
+auto it = find_if(v.begin(), v.end(), [](int x){ return x &gt; 5; });
+cout &lt;&lt; *it;
+
+输出:
+9</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>子串 / 子区间</td>
+            <td class="has-tip" tabindex="0"><code>s.substr(pos, len)</code><template><strong>截取子串</strong><pre>string s = "abcdef";
+cout &lt;&lt; s.substr(2, 3);
+
+输出:
+cde</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>vector&lt;int&gt; b(v.begin()+l, v.begin()+r)</code><template><strong>复制子区间 [l, r)</strong><pre>vector&lt;int&gt; v = {0, 1, 2, 3};
+vector&lt;int&gt; b(v.begin() + 1, v.begin() + 3);
+cout &lt;&lt; b[0] &lt;&lt; " " &lt;&lt; b[1];
+
+输出:
+1 2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>auto it = next(li.begin(), k)</code><template><strong>list 取迭代器位置</strong><pre>list&lt;int&gt; li = {10, 20, 30};
+auto it = next(li.begin(), 1);
+cout &lt;&lt; *it;
+
+输出:
+20</pre></template></td>
+            <td class="empty">不支持随机子区间</td>
+            <td class="empty">不支持随机子区间</td>
+            <td class="empty">不支持随机子区间</td>
+            <td class="has-tip" tabindex="0"><code>se.lower_bound(x)</code><br><code>se.upper_bound(x)</code><template><strong>有序范围边界</strong><pre>set&lt;int&gt; se = {1, 3, 5};
+cout &lt;&lt; *se.lower_bound(2);
+
+输出:
+3</pre></template></td>
+            <td class="empty">无序容器不支持范围边界</td>
+            <td class="has-tip" tabindex="0"><code>mp.lower_bound(key)</code><br><code>mp.upper_bound(key)</code><template><strong>map 按 key 找边界</strong><pre>map&lt;int, string&gt; mp = {{1,"a"}, {3,"c"}};
+auto it = mp.lower_bound(2);
+cout &lt;&lt; it-&gt;first;
+
+输出:
+3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>lower_bound(begin, end, x)</code><br><code>upper_bound(begin, end, x)</code><template><strong>有序数组二分边界</strong><pre>vector&lt;int&gt; v = {1, 3, 3, 5};
+cout &lt;&lt; lower_bound(v.begin(), v.end(), 3) - v.begin();
+
+输出:
+1</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>排序</td>
+            <td class="has-tip" tabindex="0"><code>sort(s.begin(), s.end())</code><template><strong>字符串排序</strong><pre>string s = "cba";
+sort(s.begin(), s.end());
+cout &lt;&lt; s;
+
+输出:
+abc</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>sort(v.begin(), v.end())</code><br><code>sort(v.rbegin(), v.rend())</code><template><strong>vector 排序</strong><pre>vector&lt;int&gt; v = {3, 1, 2};
+sort(v.begin(), v.end());
+for (int x : v) cout &lt;&lt; x;
+
+输出:
+123</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>sort(dq.begin(), dq.end())</code><br><code>li.sort()</code><template><strong>deque / list 排序</strong><pre>list&lt;int&gt; li = {3, 1, 2};
+li.sort();
+for (int x : li) cout &lt;&lt; x;
+
+输出:
+123</pre></template></td>
+            <td class="empty">不直接排序</td>
+            <td class="empty">不直接排序</td>
+            <td class="has-tip" tabindex="0"><code>priority_queue&lt;int&gt;</code><template><strong>堆天然维护最大值</strong><pre>priority_queue&lt;int&gt; pq;
+for (int x : {3, 1, 2}) pq.push(x);
+while (!pq.empty()) {
+  cout &lt;&lt; pq.top();
+  pq.pop();
+}
+
+输出:
+321</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>set 自动升序</code><br><code>set&lt;int, greater&lt;int&gt;&gt;</code><template><strong>set 自动排序</strong><pre>set&lt;int&gt; se = {3, 1, 2};
+for (int x : se) cout &lt;&lt; x;
+
+输出:
+123</pre></template></td>
+            <td class="empty">无序，不保证遍历顺序</td>
+            <td class="has-tip" tabindex="0"><code>map 按 key 升序</code><br><code>unordered_map 无序</code><template><strong>map 自动按 key 排序</strong><pre>map&lt;int, char&gt; mp = {{2,'b'}, {1,'a'}};
+for (auto [k, v] : mp) cout &lt;&lt; k;
+
+输出:
+12</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>stable_sort(...)</code><br><code>sort(..., cmp)</code><template><strong>自定义排序</strong><pre>vector&lt;pair&lt;int,int&gt;&gt; v = {{1,3}, {1,2}};
+sort(v.begin(), v.end(), [](auto a, auto b) {
+  return a.second &lt; b.second;
+});
+cout &lt;&lt; v[0].second;
+
+输出:
+2</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>反转</td>
+            <td class="has-tip" tabindex="0"><code>reverse(s.begin(), s.end())</code><template><strong>反转字符串</strong><pre>string s = "abc";
+reverse(s.begin(), s.end());
+cout &lt;&lt; s;
+
+输出:
+cba</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>reverse(v.begin(), v.end())</code><template><strong>反转 vector</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+reverse(v.begin(), v.end());
+cout &lt;&lt; v[0] &lt;&lt; v[1] &lt;&lt; v[2];
+
+输出:
+321</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>reverse(dq.begin(), dq.end())</code><br><code>li.reverse()</code><template><strong>反转 deque / list</strong><pre>list&lt;int&gt; li = {1, 2, 3};
+li.reverse();
+for (int x : li) cout &lt;&lt; x;
+
+输出:
+321</pre></template></td>
+            <td class="empty">无随机反转接口</td>
+            <td class="empty">无随机反转接口</td>
+            <td class="empty">堆不保留线性顺序</td>
+            <td class="has-tip" tabindex="0"><code>for (auto it = se.rbegin(); ...)</code><template><strong>set 逆序遍历</strong><pre>set&lt;int&gt; se = {1, 2, 3};
+for (auto it = se.rbegin(); it != se.rend(); ++it) cout &lt;&lt; *it;
+
+输出:
+321</pre></template></td>
+            <td class="empty">无稳定顺序可反转</td>
+            <td class="has-tip" tabindex="0"><code>for (auto it = mp.rbegin(); ...)</code><template><strong>map 逆序 key 遍历</strong><pre>map&lt;int, char&gt; mp = {{1,'a'}, {3,'c'}};
+for (auto it = mp.rbegin(); it != mp.rend(); ++it) cout &lt;&lt; it-&gt;first;
+
+输出:
+31</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>rotate(begin, mid, end)</code><template><strong>旋转区间</strong><pre>vector&lt;int&gt; v = {1, 2, 3, 4};
+rotate(v.begin(), v.begin() + 2, v.end());
+for (int x : v) cout &lt;&lt; x;
+
+输出:
+3412</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>去重</td>
+            <td class="has-tip" tabindex="0"><code>sort + unique + erase</code><template><strong>字符串去重</strong><pre>string s = "banana";
+sort(s.begin(), s.end());
+s.erase(unique(s.begin(), s.end()), s.end());
+cout &lt;&lt; s;
+
+输出:
+abn</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>sort(v.begin(), v.end())</code><br><code>v.erase(unique(...), v.end())</code><template><strong>vector 排序后去重</strong><pre>vector&lt;int&gt; v = {2, 1, 2, 3};
+sort(v.begin(), v.end());
+v.erase(unique(v.begin(), v.end()), v.end());
+cout &lt;&lt; v.size();
+
+输出:
+3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>li.sort(); li.unique();</code><template><strong>list 去重相邻重复</strong><pre>list&lt;int&gt; li = {2, 1, 2};
+li.sort();
+li.unique();
+cout &lt;&lt; li.size();
+
+输出:
+2</pre></template></td>
+            <td class="empty">通常不用来去重</td>
+            <td class="empty">通常不用来去重</td>
+            <td class="empty">通常不用来去重</td>
+            <td class="has-tip" tabindex="0"><code>set 天然去重</code><br><code>multiset 不去重</code><template><strong>set 去重</strong><pre>set&lt;int&gt; se = {1, 1, 2};
+cout &lt;&lt; se.size();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>unordered_set 天然去重</code><template><strong>unordered_set 去重</strong><pre>unordered_set&lt;int&gt; us = {1, 1, 2};
+cout &lt;&lt; us.size();
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>key 天然唯一</code><template><strong>map key 唯一</strong><pre>map&lt;char, int&gt; mp;
+mp['a'] = 1;
+mp['a'] = 9;
+cout &lt;&lt; mp.size() &lt;&lt; " " &lt;&lt; mp['a'];
+
+输出:
+1 9</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>unique(begin, end)</code><template><strong>unique 只压缩相邻重复</strong><pre>vector&lt;int&gt; v = {1, 1, 2, 2};
+auto it = unique(v.begin(), v.end());
+cout &lt;&lt; (it - v.begin());
+
+输出:
+2</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>遍历</td>
+            <td class="has-tip" tabindex="0"><code>for (char c : s)</code><template><strong>遍历字符串</strong><pre>string s = "abc";
+for (char c : s) cout &lt;&lt; c &lt;&lt; " ";
+
+输出:
+a b c</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for (int x : v)</code><br><code>for (int i=0; i&lt;v.size(); ++i)</code><template><strong>遍历 vector</strong><pre>vector&lt;int&gt; v = {1, 2};
+for (int x : v) cout &lt;&lt; x;
+
+输出:
+12</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for (auto x : dq)</code><br><code>for (auto it=li.begin(); ...)</code><template><strong>遍历 deque / list</strong><pre>list&lt;int&gt; li = {1, 2};
+for (auto it = li.begin(); it != li.end(); ++it) cout &lt;&lt; *it;
+
+输出:
+12</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>while (!st.empty()) { st.top(); st.pop(); }</code><template><strong>弹出式遍历 stack</strong><pre>stack&lt;int&gt; st;
+st.push(1); st.push(2);
+while (!st.empty()) {
+  cout &lt;&lt; st.top();
+  st.pop();
+}
+
+输出:
+21</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>while (!q.empty()) { q.front(); q.pop(); }</code><template><strong>弹出式遍历 queue</strong><pre>queue&lt;int&gt; q;
+q.push(1); q.push(2);
+while (!q.empty()) {
+  cout &lt;&lt; q.front();
+  q.pop();
+}
+
+输出:
+12</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>while (!pq.empty()) { pq.top(); pq.pop(); }</code><template><strong>按优先级弹出</strong><pre>priority_queue&lt;int&gt; pq;
+pq.push(1); pq.push(3); pq.push(2);
+while (!pq.empty()) {
+  cout &lt;&lt; pq.top();
+  pq.pop();
+}
+
+输出:
+321</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for (int x : se)</code><template><strong>set 遍历升序</strong><pre>set&lt;int&gt; se = {3, 1};
+for (int x : se) cout &lt;&lt; x;
+
+输出:
+13</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for (int x : us)</code><template><strong>unordered_set 遍历</strong><pre>unordered_set&lt;int&gt; us = {1, 2};
+cout &lt;&lt; us.size();
+
+输出:
+2
+
+注意:
+遍历顺序不固定。</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for (auto [k, v] : mp)</code><template><strong>遍历映射</strong><pre>map&lt;char, int&gt; mp = {{'a',1}, {'b',2}};
+for (auto [k, v] : mp) cout &lt;&lt; k &lt;&lt; v;
+
+输出:
+a1b2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for_each(begin, end, fn)</code><template><strong>for_each</strong><pre>vector&lt;int&gt; v = {1, 2};
+for_each(v.begin(), v.end(), [](int x){ cout &lt;&lt; x * 2; });
+
+输出:
+24</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>二分 / 边界</td>
+            <td class="empty">一般先转数组或直接手写逻辑</td>
+            <td class="has-tip" tabindex="0"><code>binary_search(v.begin(), v.end(), x)</code><br><code>lower_bound(...)</code><template><strong>有序 vector 二分</strong><pre>vector&lt;int&gt; v = {1, 3, 5};
+cout &lt;&lt; binary_search(v.begin(), v.end(), 3);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>lower_bound(dq.begin(), dq.end(), x)</code><template><strong>deque 可二分，list 不适合</strong><pre>deque&lt;int&gt; dq = {1, 3, 5};
+auto it = lower_bound(dq.begin(), dq.end(), 4);
+cout &lt;&lt; *it;
+
+输出:
+5</pre></template></td>
+            <td class="empty">不适用</td>
+            <td class="empty">不适用</td>
+            <td class="empty">不适用</td>
+            <td class="has-tip" tabindex="0"><code>se.lower_bound(x)</code><br><code>se.upper_bound(x)</code><template><strong>set 成员二分 O(log n)</strong><pre>set&lt;int&gt; se = {1, 3, 5};
+cout &lt;&lt; *se.upper_bound(3);
+
+输出:
+5</pre></template></td>
+            <td class="empty">哈希表无二分</td>
+            <td class="has-tip" tabindex="0"><code>mp.lower_bound(key)</code><template><strong>map key 边界</strong><pre>map&lt;int, int&gt; mp = {{2,20}, {4,40}};
+auto it = mp.lower_bound(3);
+cout &lt;&lt; it-&gt;first;
+
+输出:
+4</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>equal_range(begin, end, x)</code><template><strong>重复元素范围</strong><pre>vector&lt;int&gt; v = {1, 2, 2, 3};
+auto [l, r] = equal_range(v.begin(), v.end(), 2);
+cout &lt;&lt; (r - l);
+
+输出:
+2</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>计数 / 频率</td>
+            <td class="has-tip" tabindex="0"><code>count(s.begin(), s.end(), c)</code><template><strong>统计字符</strong><pre>string s = "banana";
+cout &lt;&lt; count(s.begin(), s.end(), 'a');
+
+输出:
+3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>count(v.begin(), v.end(), x)</code><template><strong>统计数组元素</strong><pre>vector&lt;int&gt; v = {1, 2, 1};
+cout &lt;&lt; count(v.begin(), v.end(), 1);
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>count(li.begin(), li.end(), x)</code><template><strong>统计 list 元素</strong><pre>list&lt;int&gt; li = {1, 2, 1};
+cout &lt;&lt; count(li.begin(), li.end(), 1);
+
+输出:
+2</pre></template></td>
+            <td class="empty">一般配合 map 统计</td>
+            <td class="empty">一般配合 map 统计</td>
+            <td class="empty">一般配合 map 统计</td>
+            <td class="has-tip" tabindex="0"><code>se.count(x)</code><br><code>ms.count(x)</code><template><strong>set / multiset 计数</strong><pre>multiset&lt;int&gt; ms = {1, 1, 2};
+cout &lt;&lt; ms.count(1);
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us.count(x)</code><template><strong>哈希集合存在性</strong><pre>unordered_set&lt;int&gt; us = {1, 2};
+cout &lt;&lt; us.count(3);
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>cnt[x]++</code><br><code>cnt.count(key)</code><template><strong>哈希表统计频率</strong><pre>string s = "aba";
+unordered_map&lt;char, int&gt; cnt;
+for (char c : s) cnt[c]++;
+cout &lt;&lt; cnt['a'];
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>count_if(begin, end, pred)</code><template><strong>按条件计数</strong><pre>vector&lt;int&gt; v = {1, 2, 3, 4};
+cout &lt;&lt; count_if(v.begin(), v.end(), [](int x){ return x % 2 == 0; });
+
+输出:
+2</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>替换 / 修改</td>
+            <td class="has-tip" tabindex="0"><code>s.replace(pos, len, t)</code><br><code>s[i] = c</code><template><strong>字符串替换</strong><pre>string s = "abxx";
+s.replace(2, 2, "cd");
+cout &lt;&lt; s;
+
+输出:
+abcd</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v[i] = x</code><br><code>replace(v.begin(), v.end(), old, now)</code><template><strong>vector 替换</strong><pre>vector&lt;int&gt; v = {1, 2, 2};
+replace(v.begin(), v.end(), 2, 9);
+cout &lt;&lt; v[1];
+
+输出:
+9</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>*it = x</code><br><code>li.remove(x)</code><template><strong>list 修改 / 移除值</strong><pre>list&lt;int&gt; li = {1, 2, 2};
+li.remove(2);
+cout &lt;&lt; li.size();
+
+输出:
+1</pre></template></td>
+            <td class="empty">只能改栈顶弹出后重入</td>
+            <td class="empty">只能队头弹出后处理</td>
+            <td class="empty">通常弹出后重建</td>
+            <td class="empty">元素值不可直接改；删后重插</td>
+            <td class="empty">元素值不可直接改；删后重插</td>
+            <td class="has-tip" tabindex="0"><code>mp[key] = newVal</code><br><code>it-&gt;second = newVal</code><template><strong>修改映射 value</strong><pre>map&lt;char, int&gt; mp;
+mp['a'] = 1;
+mp['a'] += 4;
+cout &lt;&lt; mp['a'];
+
+输出:
+5</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>transform(begin, end, begin, fn)</code><template><strong>批量变换</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+transform(v.begin(), v.end(), v.begin(), [](int x){ return x * x; });
+cout &lt;&lt; v[2];
+
+输出:
+9</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>累加 / 前缀和</td>
+            <td class="empty">字符可转数字后累加</td>
+            <td class="has-tip" tabindex="0"><code>accumulate(v.begin(), v.end(), 0)</code><br><code>partial_sum(...)</code><template><strong>vector 求和</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+cout &lt;&lt; accumulate(v.begin(), v.end(), 0);
+
+输出:
+6</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>accumulate(li.begin(), li.end(), 0)</code><template><strong>list 求和</strong><pre>list&lt;int&gt; li = {1, 2, 3};
+cout &lt;&lt; accumulate(li.begin(), li.end(), 0);
+
+输出:
+6</pre></template></td>
+            <td class="empty">通常不用于求和</td>
+            <td class="empty">通常不用于求和</td>
+            <td class="empty">通常不用于求和</td>
+            <td class="has-tip" tabindex="0"><code>accumulate(se.begin(), se.end(), 0)</code><template><strong>set 求和</strong><pre>set&lt;int&gt; se = {1, 2, 3};
+cout &lt;&lt; accumulate(se.begin(), se.end(), 0);
+
+输出:
+6</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>accumulate(us.begin(), us.end(), 0)</code><template><strong>unordered_set 求和</strong><pre>unordered_set&lt;int&gt; us = {1, 2, 3};
+cout &lt;&lt; accumulate(us.begin(), us.end(), 0);
+
+输出:
+6</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>for (auto [k,v] : mp) sum += v;</code><template><strong>累加 map 的 value</strong><pre>map&lt;char, int&gt; mp = {{'a',1}, {'b',2}};
+int sum = 0;
+for (auto [k, v] : mp) sum += v;
+cout &lt;&lt; sum;
+
+输出:
+3</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>partial_sum(a.begin(), a.end(), pre.begin()+1)</code><template><strong>前缀和</strong><pre>vector&lt;int&gt; a = {2, 3, 5};
+vector&lt;int&gt; pre(a.size() + 1);
+partial_sum(a.begin(), a.end(), pre.begin() + 1);
+cout &lt;&lt; pre[3];
+
+输出:
+10</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>容量 / 预留</td>
+            <td class="has-tip" tabindex="0"><code>s.reserve(n)</code><br><code>s.resize(n, c)</code><template><strong>字符串容量</strong><pre>string s = "ab";
+s.resize(5, 'x');
+cout &lt;&lt; s;
+
+输出:
+abxxx</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v.reserve(n)</code><br><code>v.resize(n, x)</code><br><code>v.capacity()</code><template><strong>vector 预留与改大小</strong><pre>vector&lt;int&gt; v;
+v.reserve(100);
+v.resize(3, 7);
+cout &lt;&lt; v.size() &lt;&lt; " " &lt;&lt; v[0];
+
+输出:
+3 7</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq.resize(n)</code><br><code>li.resize(n)</code><template><strong>deque / list resize</strong><pre>deque&lt;int&gt; dq = {1};
+dq.resize(3, 9);
+cout &lt;&lt; dq.back();
+
+输出:
+9</pre></template></td>
+            <td class="empty">无 reserve / resize</td>
+            <td class="empty">无 reserve / resize</td>
+            <td class="empty">无 reserve / resize</td>
+            <td class="empty">节点容器通常不用 reserve</td>
+            <td class="has-tip" tabindex="0"><code>us.reserve(n)</code><br><code>us.max_load_factor(f)</code><template><strong>哈希集合预留</strong><pre>unordered_set&lt;int&gt; us;
+us.reserve(1000);
+us.insert(1);
+cout &lt;&lt; us.count(1);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>ump.reserve(n)</code><br><code>ump.max_load_factor(f)</code><template><strong>哈希表预留</strong><pre>unordered_map&lt;int, int&gt; mp;
+mp.reserve(1000);
+mp[7] = 8;
+cout &lt;&lt; mp[7];
+
+输出:
+8</pre></template></td>
+            <td class="empty">通常属于容器自身能力</td>
+          </tr>
+
+          <tr>
+            <td>比较 / 相等</td>
+            <td class="has-tip" tabindex="0"><code>s == t</code><br><code>s &lt; t</code><template><strong>字符串字典序比较</strong><pre>string a = "abc", b = "abd";
+cout &lt;&lt; (a &lt; b);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>v1 == v2</code><br><code>lexicographical_compare(...)</code><template><strong>vector 比较</strong><pre>vector&lt;int&gt; a = {1, 2}, b = {1, 3};
+cout &lt;&lt; (a &lt; b);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>dq1 == dq2</code><br><code>li1 == li2</code><template><strong>容器相等比较</strong><pre>list&lt;int&gt; a = {1, 2}, b = {1, 2};
+cout &lt;&lt; (a == b);
+
+输出:
+1</pre></template></td>
+            <td class="empty">通常比较弹出序列</td>
+            <td class="empty">通常比较弹出序列</td>
+            <td class="empty">通常比较弹出序列</td>
+            <td class="has-tip" tabindex="0"><code>se1 == se2</code><template><strong>set 相等比较</strong><pre>set&lt;int&gt; a = {1, 2}, b = {2, 1};
+cout &lt;&lt; (a == b);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>us1 == us2</code><template><strong>unordered_set 相等比较</strong><pre>unordered_set&lt;int&gt; a = {1, 2}, b = {2, 1};
+cout &lt;&lt; (a == b);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp1 == mp2</code><template><strong>map 相等比较</strong><pre>map&lt;char, int&gt; a = {{'x', 1}};
+map&lt;char, int&gt; b = {{'x', 1}};
+cout &lt;&lt; (a == b);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>equal(a.begin(), a.end(), b.begin())</code><template><strong>区间相等</strong><pre>vector&lt;int&gt; a = {1, 2}, b = {1, 2};
+cout &lt;&lt; equal(a.begin(), a.end(), b.begin());
+
+输出:
+1</pre></template></td>
+          </tr>
+
+          <tr>
+            <td>常见坑</td>
+            <td class="has-tip" tabindex="0"><code>s.find(x) == string::npos</code><template><strong>find 未找到</strong><pre>string s = "abc";
+cout &lt;&lt; (s.find('z') == string::npos);
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>erase 后迭代器可能失效</code><template><strong>erase 返回下一个迭代器</strong><pre>vector&lt;int&gt; v = {1, 2, 3};
+auto it = v.erase(v.begin());
+cout &lt;&lt; *it;
+
+输出:
+2</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>list 无 operator[]</code><template><strong>list 不支持下标</strong><pre>list&lt;int&gt; li = {10, 20};
+cout &lt;&lt; *next(li.begin(), 1);
+
+输出:
+20</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pop() 不返回值</code><template><strong>stack pop 注意</strong><pre>stack&lt;int&gt; st;
+st.push(5);
+int x = st.top();
+st.pop();
+cout &lt;&lt; x;
+
+输出:
+5</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>pop() 不返回值</code><template><strong>queue pop 注意</strong><pre>queue&lt;int&gt; q;
+q.push(5);
+int x = q.front();
+q.pop();
+cout &lt;&lt; x;
+
+输出:
+5</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>greater&lt;int&gt; 需要 &lt;functional&gt;</code><template><strong>最小堆写法</strong><pre>priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+pq.push(3); pq.push(1);
+cout &lt;&lt; pq.top();
+
+输出:
+1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>erase(value) 删除所有等值元素</code><template><strong>multiset erase 坑</strong><pre>multiset&lt;int&gt; ms = {1, 1, 2};
+ms.erase(1);
+cout &lt;&lt; ms.count(1);
+
+输出:
+0</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>遍历顺序不稳定</code><template><strong>unordered_set 顺序坑</strong><pre>unordered_set&lt;int&gt; us = {1, 2, 3};
+cout &lt;&lt; us.size();
+
+输出:
+3
+
+注意:
+不要依赖打印顺序。</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>mp[key] 会创建默认值</code><template><strong>map 下标访问坑</strong><pre>unordered_map&lt;char, int&gt; mp;
+cout &lt;&lt; mp['x'] &lt;&lt; " " &lt;&lt; mp.size();
+
+输出:
+0 1</pre></template></td>
+            <td class="has-tip" tabindex="0"><code>sort 比较函数必须严格弱序</code><template><strong>比较函数注意</strong><pre>vector&lt;int&gt; v = {3, 1, 2};
+sort(v.begin(), v.end(), [](int a, int b) {
+  return a &gt; b;
+});
+cout &lt;&lt; v[0];
+
+输出:
+3</pre></template></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="tooltip" class="tooltip" role="tooltip"></div>
+
+  <script>
+    const tooltip = document.getElementById("tooltip");
+    const table = document.getElementById("stl-table");
+    const search = document.getElementById("search");
+
+    function positionTooltip(event) {
+      const gap = 14;
+      const rect = tooltip.getBoundingClientRect();
+      let left = event.clientX + gap;
+      let top = event.clientY + gap;
+
+      if (left + rect.width > window.innerWidth - 8) {
+        left = event.clientX - rect.width - gap;
+      }
+      if (top + rect.height > window.innerHeight - 8) {
+        top = event.clientY - rect.height - gap;
+      }
+
+      tooltip.style.left = Math.max(8, left) + "px";
+      tooltip.style.top = Math.max(8, top) + "px";
+    }
+
+    function showTooltip(cell, event) {
+      const template = cell.querySelector("template");
+      if (!template) return;
+      tooltip.innerHTML = template.innerHTML;
+      tooltip.style.display = "block";
+      positionTooltip(event);
+    }
+
+    function hideTooltip() {
+      tooltip.style.display = "none";
+    }
+
+    table.addEventListener("mousemove", (event) => {
+      const cell = event.target.closest(".has-tip");
+      if (!cell) return hideTooltip();
+      if (tooltip.style.display !== "block") showTooltip(cell, event);
+      positionTooltip(event);
+    });
+
+    table.addEventListener("mouseleave", hideTooltip);
+
+    table.addEventListener("focusin", (event) => {
+      const cell = event.target.closest(".has-tip");
+      if (!cell) return;
+      const rect = cell.getBoundingClientRect();
+      showTooltip(cell, {
+        clientX: rect.left + rect.width / 2,
+        clientY: rect.top + rect.height / 2
+      });
+    });
+
+    table.addEventListener("focusout", hideTooltip);
+
+    search.addEventListener("input", () => {
+      const keyword = search.value.trim().toLowerCase();
+      const rows = table.querySelectorAll("tbody tr");
+
+      rows.forEach((row) => {
+        row.querySelectorAll("mark").forEach((m) => m.replaceWith(m.textContent));
+        const text = row.innerText.toLowerCase();
+        const matched = !keyword || text.includes(keyword);
+        row.classList.toggle("hidden", !matched);
+
+        if (keyword && matched) {
+          row.querySelectorAll("td, th").forEach((cell) => {
+            Array.from(cell.childNodes).forEach((node) => {
+              if (node.nodeType === Node.TEXT_NODE && node.textContent.toLowerCase().includes(keyword)) {
+                const re = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "ig");
+                const span = document.createElement("span");
+                span.innerHTML = node.textContent.replace(re, "<mark>$1</mark>");
+                node.replaceWith(span);
+              }
+            });
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
