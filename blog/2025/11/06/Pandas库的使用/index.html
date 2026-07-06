@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Pandas库的使用 | Yang Fengling</title><meta name="author" content="Yang Fengling"><meta name="copyright" content="Yang Fengling"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言Pandas 是一个开源的 Python 数据分析库，专门用于数据处理、清洗、分析和可视化。它提供了强大的数据结构和工具，能够让你以非常高效的方式处理和分析结构化数据（例如表格数据）。Pandas 是数据科学和机器学习工作流中不可或缺的工具，广泛应用于金融、科学研究、机器学习等领域。导入方法 1import pandas as pd  基本数据结构 DataFrame创建方法   12pd.D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas库的使用">
+<meta property="og:url" content="https://bellaallaa.github.io/blog/2025/11/06/Pandas%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Yang Fengling">
+<meta property="og:description" content="前言Pandas 是一个开源的 Python 数据分析库，专门用于数据处理、清洗、分析和可视化。它提供了强大的数据结构和工具，能够让你以非常高效的方式处理和分析结构化数据（例如表格数据）。Pandas 是数据科学和机器学习工作流中不可或缺的工具，广泛应用于金融、科学研究、机器学习等领域。导入方法 1import pandas as pd  基本数据结构 DataFrame创建方法   12pd.D">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bellaallaa.github.io/img/img1.jpg">
+<meta property="article:published_time" content="2025-11-06T09:34:32.000Z">
+<meta property="article:modified_time" content="2025-11-07T02:38:07.188Z">
+<meta property="article:author" content="Yang Fengling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bellaallaa.github.io/img/img1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pandas库的使用",
+  "url": "https://bellaallaa.github.io/blog/2025/11/06/Pandas%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/",
+  "image": "https://bellaallaa.github.io/img/img1.jpg",
+  "datePublished": "2025-11-06T09:34:32.000Z",
+  "dateModified": "2025-11-07T02:38:07.188Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yang Fengling",
+      "url": "https://Bellaallaa.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bellaallaa.github.io/blog/2025/11/06/Pandas%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pandas库的使用',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/pink_back.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-book"></i><span> Blog</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/blue_back.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yang Fengling</span></a><a class="nav-page-title" href="/"><span class="site-name">Pandas库的使用</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-book"></i><span> Blog</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Pandas库的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-11-06T09:34:32.000Z" title="Created 2025-11-06 17:34:32">2025-11-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-11-07T02:38:07.188Z" title="Updated 2025-11-07 10:38:07">2025-11-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Pandas 是一个开源的 Python 数据分析库，专门用于数据处理、清洗、分析和可视化。它提供了强大的数据结构和工具，能够让你以非常高效的方式处理和分析结构化数据（例如表格数据）。Pandas 是数据科学和机器学习工作流中不可或缺的工具，广泛应用于金融、科学研究、机器学习等领域。<br>导入方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h3><ol>
+<li><p>DataFrame<br>创建方法</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame(&#123;<span class="string">&#x27;Bob&#x27;</span>: [<span class="string">&#x27;I liked it.&#x27;</span>, <span class="string">&#x27;It was awful.&#x27;</span>], <span class="string">&#x27;Sue&#x27;</span>: [<span class="string">&#x27;Pretty good.&#x27;</span>, <span class="string">&#x27;Bland.&#x27;</span>]&#125;,</span><br><span class="line">index=[<span class="string">&#x27;Product A&#x27;</span>, <span class="string">&#x27;Product B&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p>  结果为</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Bob</th>
+<th>Sue</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product A</td>
+<td>I liked it.</td>
+<td>Pretty good.</td>
+</tr>
+<tr>
+<td>Product B</td>
+<td>It was awful.</td>
+<td>Bland.</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Series<br>创建方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0    1</span><br><span class="line">1    2</span><br><span class="line">2    3</span><br><span class="line">3    4</span><br><span class="line">4    5</span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
+<p> 我们可以把<code>Series</code>视为只有1列的<code>DataFrame</code>, 当使用</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.Series([<span class="number">30</span>, <span class="number">35</span>, <span class="number">40</span>], index=[<span class="string">&#x27;2015 Sales&#x27;</span>, <span class="string">&#x27;2016 Sales&#x27;</span>, <span class="string">&#x27;2017 Sales&#x27;</span>], name=<span class="string">&#x27;Product A&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p> 创建时, 输出为</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2015 Sales    30</span><br><span class="line">2016 Sales    35</span><br><span class="line">2017 Sales    40</span><br><span class="line">Name: Product A, dtype: int64</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><h4 id="1-CSV文件"><a href="#1-CSV文件" class="headerlink" title="1. CSV文件"></a>1. CSV文件</h4><blockquote>
+<p>CSV 文件（全称 Comma-Separated Values 文件）是一种纯文本文件，用于存储表格数据（例如，电子表格或数据库的表）。它通常用于数据交换和存储，因为它是非常简单和易于理解的格式，几乎所有编程语言和数据分析工具都支持它。<br>示例：CSV 文件内容<br>Name,Age,City<br>Alice,25,New York<br>Bob,30,Los Angeles<br>Charlie,35,Chicago</p>
+</blockquote>
+<h4 id="2-读写csv文件"><a href="#2-读写csv文件" class="headerlink" title="2. 读写csv文件"></a>2. 读写csv文件</h4><h5 id="2-1-从一个csv文件中读入数据"><a href="#2-1-从一个csv文件中读入数据" class="headerlink" title="2.1 从一个csv文件中读入数据"></a>2.1 从一个<code>csv</code>文件中读入数据</h5>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wine_reviews = pd.read_csv(<span class="string">&quot;../input/wine-reviews/winemag-data-130k-v2.csv&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>   查看属性<br>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wine_reviews.shape <span class="comment"># (129971, 14)</span></span><br><span class="line">wine_reviews.head() <span class="comment">#  grabs the first five rows</span></span><br><span class="line">index_col=<span class="number">0</span> <span class="comment"># pd.read_csv() 中的一个可选参数 </span></span><br></pre></td></tr></table></figure></p>
+<h5 id="2-2-将一个DataFrame写入csv文件"><a href="#2-2-将一个DataFrame写入csv文件" class="headerlink" title="2.2 将一个DataFrame写入csv文件"></a>2.2 将一个<code>DataFrame</code>写入<code>csv</code>文件</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataFrame.to_csv(path_or_buffer, sep=<span class="string">&#x27;,&#x27;</span>, na_rep=<span class="string">&#x27;&#x27;</span>, header=<span class="literal">True</span>, index=<span class="literal">True</span>, columns=<span class="literal">None</span>, encoding=<span class="literal">None</span>, compression=<span class="string">&#x27;infer&#x27;</span>, line_terminator=<span class="string">&#x27;\n&#x27;</span>, quotechar=<span class="string">&#x27;&quot;&#x27;</span>, quoting=<span class="number">0</span>, doublequote=<span class="literal">True</span>, escapechar=<span class="literal">None</span>, date_format=<span class="literal">None</span>, decimal=<span class="string">&#x27;.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>path_or_buffer</code>: 指定文件路径或者文件对象。如果提供的是文件路径，Pandas 会将数据保存到该文件中。如果提供的是文件对象（例如 io.StringIO），则数据会被写入该对象。</p>
+</li>
+<li><p><code>sep</code>: 用于分隔列的字符，默认是逗号（,）。如果你要使用其他分隔符（例如分号 ;），可以通过这个参数来指定。</p>
+</li>
+<li><p><code>na_rep</code>: 指定表示缺失值的字符串，默认是空字符串 ‘’。例如，如果数据中有缺失值，可以将其替换为 NA、NULL 等。</p>
+</li>
+<li><p><code>header</code>: 是否写入列名，默认是 True。如果设置为 False，则不写入列名。</p>
+</li>
+<li><p><code>index</code>: 是否写入行索引，默认是 True。如果设置为 False，则不会写入行索引。</p>
+</li>
+<li><p><code>columns</code>: 指定需要写入的列，默认为 None，即写入所有列。如果只想写入某些列，可以通过这个参数指定列名的列表。</p>
+</li>
+<li><p><code>encoding</code>: 文件的编码格式，默认是 None（根据操作系统选择编码）。常见的编码格式有 utf-8、utf-16、ISO-8859-1 等。</p>
+</li>
+<li><p><code>compression</code>: 如果文件需要压缩，可以使用 gzip、bz2、zip、xz 等压缩格式。</p>
+</li>
+<li><p><code>line_terminator</code>: 用于换行符的字符，默认是 \n。</p>
+</li>
+<li><p><code>quotechar</code>: 用于引用字段的字符，默认是双引号（”）。</p>
+</li>
+<li><p><code>quoting</code>: 控制是否引用字段值的行为。常见的值有</p>
+<ul>
+<li>0：不引用任何字段。</li>
+<li>1：仅当字段包含分隔符时才引用字段。</li>
+<li>2：总是引用字段。</li>
+<li>3：引用所有包含特殊字符（如换行符、引号等）的字段。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-索引"><a href="#3-索引" class="headerlink" title="3. 索引"></a>3. 索引</h4><h5 id="3-1-本地访问Native-accessors"><a href="#3-1-本地访问Native-accessors" class="headerlink" title="3.1 本地访问Native accessors"></a>3.1 本地访问Native accessors</h5><p>在<code>DataFrame</code>中索引某一列(<code>Series</code>)的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataframe.colom1 <span class="comment"># 如 reviews.country</span></span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">dataframe[<span class="string">&#x27;colom1&#x27;</span>] <span class="comment"># 如 reviews[&#x27;country&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>引用某一列第<code>i</code>行的方法<br><em>注意, 这是<strong>先列再行</strong></em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reviews[<span class="string">&#x27;country&#x27;</span>][i]</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2-Pandas库中的索引Indexing-inpandas"><a href="#3-2-Pandas库中的索引Indexing-inpandas" class="headerlink" title="3.2 Pandas库中的索引Indexing inpandas"></a>3.2 Pandas库中的索引Indexing inpandas</h5><ol>
+<li>基于下标index的<code>iloc</code>函数  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dataframe.iloc[i] <span class="comment"># 如 reviews,iloc[0]</span></span><br><span class="line">dataframe.iloc[:, <span class="number">0</span>] <span class="comment"># 所有行,第0列</span></span><br><span class="line">dataframe.iloc[:<span class="number">3</span>, <span class="number">0</span>] <span class="comment"># 第0-3行 第0列</span></span><br><span class="line">dataframe.iloc[<span class="number">1</span>:<span class="number">3</span>, <span class="number">0</span>] <span class="comment"># 第1-3行,第0列</span></span><br><span class="line">dataframe.iloc[[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], <span class="number">0</span>] <span class="comment"># 第1,2,3行,第0列</span></span><br><span class="line">dataframe.iloc[-<span class="number">5</span>:] <span class="comment"># 倒数5行</span></span><br></pre></td></tr></table></figure></li>
+<li>基于标签label的<code>loc</code>函数  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dataframe.loc[<span class="number">0</span>, <span class="string">&#x27;country&#x27;</span>] <span class="comment"># 第0行的&#x27;country&#x27;标签列</span></span><br><span class="line">dataframe.loc[:, [<span class="string">&#x27;taster_name&#x27;</span>, <span class="string">&#x27;taster_twitter_handle&#x27;</span>, <span class="string">&#x27;points&#x27;</span>]] <span class="comment"># 所有行的这3列</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="3-3-iloc与loc的区别"><a href="#3-3-iloc与loc的区别" class="headerlink" title="3.3 iloc与loc的区别"></a>3.3 <code>iloc</code>与<code>loc</code>的区别</h5><p><code>iloc</code> 使用 <code>Python</code> 标准库的索引方案，其中包含范围的第一个元素，排除最后一个元素。因此，<code>0:10</code> 会选择 <strong>0,…,9</strong> 这 9 个条目。而 <code>loc</code> 则使用包含索引的方式。因此，<code>0:10</code> 会选择 <strong>0,…,10</strong> 这 10 个条目。<br><code>loc</code> 可以索引任何标准库类型，例如字符串。如果有一个 DataFrame，索引值为 <code>Apples, ..., Potatoes, ...</code>，并且我们想要选择“所有字母顺序在 <code>Apples</code> 和 <code>Potatoes</code> 之间的水果”，那么使用索引 <code>df.loc[&#39;Apples&#39;:&#39;Potatoes&#39;]</code> 比使用类似 <code>df.loc[&#39;Apples&#39;, &#39;Potatoet&#39;]</code> 的索引要方便得多（字母 t 在字母 s 之后）。</p>
+<h5 id="3-4-新增一行索引"><a href="#3-4-新增一行索引" class="headerlink" title="3.4 新增一行索引"></a>3.4 新增一行索引</h5><p>新增了一个名为title的行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataframe.set_index(<span class="string">&quot;title&quot;</span>) </span><br></pre></td></tr></table></figure>
+
+<h5 id="3-5-选择一些特定的行或列"><a href="#3-5-选择一些特定的行或列" class="headerlink" title="3.5 选择一些特定的行或列"></a>3.5 选择一些特定的行或列</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reviews.country == <span class="string">&#x27;Italy&#x27;</span> <span class="comment"># 是否country为Italy</span></span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>True</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>False</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>129969</td>
+<td>False</td>
+</tr>
+<tr>
+<td>129970</td>
+<td>False</td>
+</tr>
+</tbody></table>
+<p>根据条件选择一些特定的行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reviews.loc[reviews.country == <span class="string">&#x27;Italy&#x27;</span>]</span><br><span class="line"><span class="comment"># 输出country为Italy的那些行</span></span><br><span class="line">reviews.loc[(reviews.country == <span class="string">&#x27;Italy&#x27;</span>) &amp; (reviews.points &gt;= <span class="number">90</span>)]</span><br><span class="line">reviews.loc[(reviews.country == <span class="string">&#x27;Italy&#x27;</span>) | (reviews.points &gt;= <span class="number">90</span>)]</span><br><span class="line">reviews.loc[reviews.country.isin([<span class="string">&#x27;Italy&#x27;</span>, <span class="string">&#x27;France&#x27;</span>])]</span><br><span class="line">reviews.loc[reviews.price.notnull()]</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-6-向DataFrame赋值"><a href="#3-6-向DataFrame赋值" class="headerlink" title="3.6 向DataFrame赋值"></a>3.6 向DataFrame赋值</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reviews[<span class="string">&#x27;critic&#x27;</span>] = <span class="string">&#x27;everyone&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>reviews[&#39;critic&#39;]</code>输出为</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>everyone</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>everyone</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>129969</td>
+<td>everyone</td>
+</tr>
+<tr>
+<td>129970</td>
+<td>everyone</td>
+</tr>
+<tr>
+<td>Name: critic, Length: 129971, dtype: object</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="4-描述性统计"><a href="#4-描述性统计" class="headerlink" title="4. 描述性统计"></a>4. 描述性统计</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataframe.describe()</span><br></pre></td></tr></table></figure>
+<p>对于数值型数据使用<code>describe()</code>,将显示计数(<code>count</code>),唯一值(<code>unique</code>),最频繁值(<code>top</code>),频率(<code>freq</code>)等信息<br>如</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">             age      height      weight</span><br><span class="line">count  <span class="number">10.000000</span>   <span class="number">10.000000</span>   <span class="number">10.000000</span></span><br><span class="line"><span class="built_in">mean</span>   <span class="number">35.800000</span>  <span class="number">169.300000</span>   <span class="number">64.500000</span></span><br><span class="line">std     <span class="number">11.522909</span>    <span class="number">6.670423</span>    <span class="number">10.749336</span></span><br><span class="line"><span class="built_in">min</span>    <span class="number">12.000000</span>   <span class="number">155.000000</span>   <span class="number">45.000000</span></span><br><span class="line"><span class="number">25</span><span class="comment">%    24.500000   162.500000   57.500000</span></span><br><span class="line"><span class="number">50</span><span class="comment">%    36.000000   169.000000   64.000000</span></span><br><span class="line"><span class="number">75</span><span class="comment">%    42.000000   173.500000   70.500000</span></span><br><span class="line"><span class="built_in">max</span>    <span class="number">50.000000</span>   <span class="number">180.000000</span>   <span class="number">80.000000</span></span><br></pre></td></tr></table></figure>
+<p>对于非数值型数据</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">         name gender         city</span><br><span class="line">count        <span class="number">5</span>      <span class="number">5</span>            <span class="number">5</span></span><br><span class="line">unique       <span class="number">5</span>      <span class="number">2</span>            <span class="number">3</span></span><br><span class="line">top      Alice      M     New York</span><br><span class="line">freq         <span class="number">1</span>      <span class="number">3</span>            <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>还可以只统计某一列, 或某一数据,如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dataframe.points.describe() <span class="comment"># 只统计points这一列</span></span><br><span class="line">dataframe.points.mean() <span class="comment"># 只计算points的均值</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-Maps"><a href="#5-Maps" class="headerlink" title="5. Maps"></a>5. Maps</h4><ol>
+<li><code>map</code>函数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">review_points_mean = reviews.points.mean()</span><br><span class="line">reviews.points.<span class="built_in">map</span>(<span class="keyword">lambda</span> p: p - review_points_mean)</span><br></pre></td></tr></table></figure>
+输出为<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>        <span class="number">-1.447138</span></span><br><span class="line"><span class="number">1</span>        <span class="number">-1.447138</span></span><br><span class="line">            ...   </span><br><span class="line"><span class="number">129969</span>    <span class="number">1.552862</span></span><br><span class="line"><span class="number">129970</span>    <span class="number">1.552862</span></span><br><span class="line">Name: points, Length: <span class="number">129971</span>, dtype: float64</span><br></pre></td></tr></table></figure></li>
+<li><code>apply</code>函数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">remean_points</span>(<span class="params">row</span>):</span><br><span class="line"> row.points = row.points - review_points_mean</span><br><span class="line"> <span class="keyword">return</span> row</span><br><span class="line"></span><br><span class="line">reviews.apply(remean_points, axis=<span class="string">&#x27;columns&#x27;</span>)</span><br></pre></td></tr></table></figure>
+作用是使<code>dataframe</code>中<code>points</code>列的值都减去<code>review_points_mean</code></li>
+<li>注意:无论是<code>map</code>函数还是<code>apply</code>函数,都没有改变原本<code>dataframe</code>的值</li>
+</ol>
+<h4 id="6-Grouping-and-Sorting-分组和排序"><a href="#6-Grouping-and-Sorting-分组和排序" class="headerlink" title="6. Grouping and Sorting 分组和排序"></a>6. Grouping and Sorting 分组和排序</h4><p><a target="_blank" rel="noopener" href="https://www.kaggle.com/code/residentmario/grouping-and-sorting">https://www.kaggle.com/code/residentmario/grouping-and-sorting</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kaggle.com/code/dansbecker/basic-data-exploration">https://www.kaggle.com/code/dansbecker/basic-data-exploration</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://Bellaallaa.github.io">Yang Fengling</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://bellaallaa.github.io/blog/2025/11/06/Pandas%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/">https://bellaallaa.github.io/blog/2025/11/06/Pandas%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/img1.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/blog/2025/11/07/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80-GAMES101/" title="图形学基础:GAMES101"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">图形学基础:GAMES101</div></div><div class="info-2"><div class="info-item-1">一、数学基础：线性代数关于向量（vector）以及向量点乘（dot product）在高中已经学过，下面简单介绍 向量叉乘（cross product） 以及 正交基（orthonormal bases）和坐标系（coordinate frames） 1. 向量叉乘（cross product）$$ \mathbf{a} \times \mathbf{b} &#x3D; \mathbf{c} $$其中 $\mathbf{c}$ 向量的方向按照右手定则来判定, 向量的长度为 $ |\mathbf{a}| |\mathbf{b}| \sin(\theta) $  右手定则方法一: 右手大拇指和食指分别指向第一个,第二个向量的方向,中指的方向就是结果向量的方向方法二: 右手四指由第一个向量到第二个向量的方向弯曲,大拇指的方向就是结果向量的方向  用笛卡尔公式来表示叉乘:$$\mathbf{a} \times \mathbf{b} &#x3D;\begin{pmatrix}y_a z_b - y_b z_a \z_a x_b - x_a z_b \x_a y_b - y_a x_b\en...</div></div></div></a><a class="pagination-related" href="/blog/2025/10/30/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git 常用命令"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Git 常用命令</div></div><div class="info-2"><div class="info-item-1">Git 是最常用的分布式版本控制系统之一，命令非常多，但其实常用的就几十个左右。下面是一份「最常用 Git 命令速查表」，并按用途分类  🧱 一、初始化与配置   命令 说明    git init 在当前目录初始化一个新的 Git 仓库   git clone &lt;url&gt; 克隆远程仓库到本地   git config --global user.name &quot;YourName&quot; 设置全局用户名   git config --global user.email &quot;you@example.com&quot; 设置全局邮箱   git config --list 查看当前配置    📁 二、查看仓库状态与历史   命令 说明    git status 查看当前工作区状态（修改、暂存等）   git log 查看提交历史   git log --oneline --graph --all 以简洁图形方式查看提交历史   git show &lt;commit&gt; 显示某次提交的详细信息   git diff 查看工作区与暂存区的区别  ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yang Fengling</div><div class="author-info-description">Personal homepage and technical blog of Yang Fengling, an undergraduate student in Computer Science at Peking University.</div><div class="site-data"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">基本数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-CSV%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">1. CSV文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%BB%E5%86%99csv%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">2. 读写csv文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-%E4%BB%8E%E4%B8%80%E4%B8%AAcsv%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AF%BB%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 从一个csv文件中读入数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-%E5%B0%86%E4%B8%80%E4%B8%AADataFrame%E5%86%99%E5%85%A5csv%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2 将一个DataFrame写入csv文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%B4%A2%E5%BC%95"><span class="toc-number">3.3.</span> <span class="toc-text">3. 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-%E6%9C%AC%E5%9C%B0%E8%AE%BF%E9%97%AENative-accessors"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.1 本地访问Native accessors</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-Pandas%E5%BA%93%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95Indexing-inpandas"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.2 Pandas库中的索引Indexing inpandas</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-iloc%E4%B8%8Eloc%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.3.</span> <span class="toc-text">3.3 iloc与loc的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-4-%E6%96%B0%E5%A2%9E%E4%B8%80%E8%A1%8C%E7%B4%A2%E5%BC%95"><span class="toc-number">3.3.4.</span> <span class="toc-text">3.4 新增一行索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-5-%E9%80%89%E6%8B%A9%E4%B8%80%E4%BA%9B%E7%89%B9%E5%AE%9A%E7%9A%84%E8%A1%8C%E6%88%96%E5%88%97"><span class="toc-number">3.3.5.</span> <span class="toc-text">3.5 选择一些特定的行或列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-6-%E5%90%91DataFrame%E8%B5%8B%E5%80%BC"><span class="toc-number">3.3.6.</span> <span class="toc-text">3.6 向DataFrame赋值</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1"><span class="toc-number">3.4.</span> <span class="toc-text">4. 描述性统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Maps"><span class="toc-number">3.5.</span> <span class="toc-text">5. Maps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Grouping-and-Sorting-%E5%88%86%E7%BB%84%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">3.6.</span> <span class="toc-text">6. Grouping and Sorting 分组和排序</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2026/06/04/%E9%85%8D%E7%BD%AEVSCode%E7%BC%96%E5%86%99Latex/%E9%85%8D%E7%BD%AEVSCode%E7%BC%96%E5%86%99Latex/" title="配置VSCode编写Latex">配置VSCode编写Latex</a><time datetime="2026-06-04T06:51:26.000Z" title="Created 2026-06-04 14:51:26">2026-06-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2026/05/08/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="一些好用的小工具">一些好用的小工具</a><time datetime="2026-05-08T13:43:41.000Z" title="Created 2026-05-08 21:43:41">2026-05-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2026/01/06/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="力扣刷题笔记">力扣刷题笔记</a><time datetime="2026-01-06T12:47:14.000Z" title="Created 2026-01-06 20:47:14">2026-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/12/24/%E5%9C%A8Linux%E4%B8%AD%E7%BC%96%E8%AF%91C-%E4%BB%A3%E7%A0%81/" title="在Linux中编译C++代码">在Linux中编译C++代码</a><time datetime="2025-12-24T08:48:52.000Z" title="Created 2025-12-24 16:48:52">2025-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/11/08/Blender%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Blender的使用">Blender的使用</a><time datetime="2025-11-08T08:36:55.000Z" title="Created 2025-11-08 16:36:55">2025-11-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/pink_back.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yang Fengling</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
