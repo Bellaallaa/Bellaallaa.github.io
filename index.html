@@ -111,18 +111,6 @@
       letter-spacing: 0;
     }
 
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .email-line {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
     section {
       scroll-margin-top: calc(var(--nav-height) + 18px);
       margin-top: 34px;
@@ -148,6 +136,28 @@
 
     p {
       margin: 0 0 12px;
+    }
+
+    .button-row {
+      margin-top: 16px;
+    }
+
+    .email-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--soft);
+      color: var(--link);
+      font-size: 14px;
+    }
+
+    .email-button:hover {
+      background: #eef2f6;
+      text-decoration: none;
     }
 
     ul {
@@ -249,13 +259,6 @@
   <div class="page">
     <header id="top">
       <h1><span class="en">Fengling Yang</span><span class="zh">杨丰岭</span></h1>
-      <p class="subtitle">
-        <span class="en">Undergraduate Student, School of Electronics Engineering and Computer Science, Peking University</span>
-        <span class="zh">北京大学信息科学技术学院本科生</span>
-      </p>
-      <p class="email-line">
-        Email: <a href="mailto:fenglingyang@stu.pku.edu.cn">fenglingyang@stu.pku.edu.cn</a>
-      </p>
     </header>
 
     <main>
@@ -264,14 +267,18 @@
         <p class="en">
           I am Fengling Yang, a junior undergraduate student at the
           <a href="https://eecs.pku.edu.cn/" target="_blank" rel="noopener noreferrer">School of Electronics Engineering and Computer Science</a>,
-          Peking University. My current interests focus on genome foundation models (AI for Science) and
-          computer vision. Previously, I have also worked on 3D reconstruction and video understanding in
-          medical scenarios, especially surgical scenes.
+          <a href="https://www.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a>.
+          My current interests focus on genome foundation models (AI for Science) and computer vision.
+          Previously, I have also worked on 3D reconstruction and video understanding in medical scenarios,
+          especially surgical scenes.
         </p>
         <p class="zh">
-          我是杨丰岭，北京大学<a href="https://eecs.pku.edu.cn/" target="_blank" rel="noopener noreferrer">信息科学技术学院</a>大三本科生在读。
+          我是杨丰岭，<a href="https://www.pku.edu.cn/" target="_blank" rel="noopener noreferrer">北京大学</a><a href="https://eecs.pku.edu.cn/" target="_blank" rel="noopener noreferrer">信息科学技术学院</a>大三本科生在读。
           目前兴趣集中在基因组大模型（AI for Science）和计算机视觉。此前，我也曾研究过三维重建和医学场景（尤其是手术场景）的视频理解。
         </p>
+        <div class="button-row">
+          <a class="email-button" href="mailto:fenglingyang@stu.pku.edu.cn">Email</a>
+        </div>
       </section>
 
       <section id="education">
